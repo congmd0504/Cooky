@@ -1,0 +1,30 @@
+/* Footer User */
+.footer {
+    background: url("https://res.cloudinary.com/do9rcgv5s/image/upload/v1692144184/qgbkcsydg2vwqcosx4ns.png")
+        no-repeat top;
+    background-size: cover;
+    position: relative;
+    color: #fff;
+    padding-top: 100px;
+    padding-bottom: 70px;
+    margin-top: 30px;
+}
+.footer .row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.footer .footer-title,
+.footer ul li{
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+.copyright-img img{
+    border-radius: 50%;
+}
+.footer-title{
+    font-weight: 700;
+}
+.text-copyright h4{
+    margin: 18px 0;
+}

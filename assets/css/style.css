@@ -1,0 +1,56 @@
+/* Font SF UI Text */
+@font-face {
+    font-family: "San Francisco Display";
+    src: url("../fonts/anFranciscoDisplay-Medium.woff2") format("woff2"),
+        url("./style.css/SanFranciscoDisplay-Medium.woff") format("woff");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "SF UI Text Regular";
+    src: url("https://db.onlinewebfonts.com/t/5ad142d0e49ca868b1530c30a47c625f.eot");
+    src: url("https://db.onlinewebfonts.com/t/5ad142d0e49ca868b1530c30a47c625f.eot?#iefix")format("embedded-opentype"),
+        url("https://db.onlinewebfonts.com/t/5ad142d0e49ca868b1530c30a47c625f.woff2")format("woff2"),
+        url("https://db.onlinewebfonts.com/t/5ad142d0e49ca868b1530c30a47c625f.woff")format("woff"),
+        url("https://db.onlinewebfonts.com/t/5ad142d0e49ca868b1530c30a47c625f.ttf")format("truetype"),
+        url("https://db.onlinewebfonts.com/t/5ad142d0e49ca868b1530c30a47c625f.svg#SF UI Text Regular")format("svg");
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "SF UI Text Regular", "San Francisco Display", sans-serif;
+}
+
+.button-add-to-cart i {
+    color: #ff8144 !important;
+}
+
+.waiting-confirmation {
+    color: #f84926;
+}
+
+.processing {
+    color: #108ee9;
+}
+
+.shipping {
+    color: #f50;
+}
+
+.delivered {
+    color: #87d068;
+}
+
+.refuse,
+.canceled {
+    color: #ff3b3b;
+}
+
+.message-error {
+    font-size: 13px;
+    display: block;
+    margin-bottom: 12px;
+    color: #ff3b3b;
+}
