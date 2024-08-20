@@ -1,6 +1,6 @@
 <?php
-$list_danh_muc = loai_select_all();
 $target_dir = "../uploads/";
+
 ?>
 
 <div class="main-content">
@@ -28,10 +28,10 @@ $target_dir = "../uploads/";
                     <div class="card">
                         <form action="?act=delete-dm" method="post">
                             <div class="card-body">
-                                <h4 class="card-title">Tất cả danh mục
-                                    <a href="?act=adddm" class="btn btn-success float-right "
+                                <h4 class="card-title">Tất cả sản phẩm
+                                    <a href="?act=addsp" class="btn btn-success float-right "
                                         style="transform: translateY(-30%);">
-                                        <i class="bx bx-plus pr-1"></i> Thêm danh mục
+                                        <i class="bx bx-plus pr-1"></i> Thêm sản phẩm
                                     </a>
                                 </h4>
 
@@ -40,41 +40,65 @@ $target_dir = "../uploads/";
                                         <tr>
                                             <th></th>
                                             <th>ID</th>
-                                            <th>Tên danh mục</th>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Gía </th>
+                                            <th>Mô tả</th>
                                             <th>Hình ảnh</th>
+                                            <th>Lượt xem</th>
+                                            <th>Danh mục</th>
                                             <th>Hành động</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($list_danh_muc as $danh_muc):
-                                            extract($danh_muc)
-                                                ?>
-                                            <?php if ($danh_muc['display_danh_muc'] == 0):
-                                                continue; endif ?>
+                                        <?php foreach ($list_san_pham as $san_pham):
+                                            extract($san_pham);
+                                            // print_r($san_pham);
+                                            ?>
+                                            <?php if ($san_pham['display_san_pham'] == 0):
+                                                continue;
+                                            endif ?>
                                             <tr>
                                                 <td>
-                                                    <input type="checkbox" value="<?php echo $danh_muc['id_danh_muc'] ?>"
+                                                    <input type="checkbox" value="<?php echo $san_pham['id_san_pham'] ?>"
                                                         <?php echo isset($_GET['checkAll']) ? 'checked' : '' ?>
                                                         name="checkAll[]">
                                                 </td>
                                                 <td class="font-weight-bolder text-primary">
-                                                    <?php echo $danh_muc['id_danh_muc'] ?>
+                                                    <?php echo $san_pham['id_san_pham'] ?>
                                                 </td>
-                                                <td><?php echo $danh_muc['ten_danh_muc'] ?></td>
+                                                <td>
+                                                    <?php echo $san_pham['ten_san_pham'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $san_pham['price'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $san_pham['mo_ta'] ?>
+                                                </td>
                                                 <td>
                                                     <?php
-                                                    $image = $target_dir . $danh_muc['anh_danh_muc'];
+                                                    $image = $target_dir . $san_pham['hinh_anh'];
                                                     ?>
-                                                    <img height="70px" src="<?= $image ?>" alt="">
+                                                    <img src="<?= $image ?>" height="50px" alt="">
                                                 </td>
                                                 <td>
-                                                    <a href="?act=update-dm&id-dm=<?php echo $danh_muc['id_danh_muc'] ?>"
+                                                    <?php echo $san_pham['luot_xem'] ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $san_pham['ten_danh_muc'] ?>
+                                                </td>
+                                                <td>
+                                                    <a href="?act=list-detail&id=<?php echo $san_pham['id_san_pham'] ?>"
+                                                        class="btn btn-light text-center p-2 " data-toggle="tooltip"
+                                                        data-placement="top" title="Xem chi tiết"><i
+                                                            class="bx bx-show font-weight-bold"></i></a>
+                                                    <a href="?act=update-sp&id-sp=<?php echo $san_pham['id_san_pham'] ?>"
                                                         class="btn btn-light text-center p-2" title="Sửa">
                                                         <i class="bx bx-pencil font-weight-bold"></i>
                                                     </a>
-                                                    <a href="?act=delete-dm&id-dm=<?php echo $danh_muc['id_danh_muc'] ?>"
+                                                    <a href="?act=delete-sp&id-sp=<?php echo $san_pham['id_san_pham'] ?>"
                                                         class="btn btn-light text-center p-2" title="Xóa"
-                                                        onclick="return confirm('<?php echo (loai_exist($danh_muc['id_danh_muc'])) ? 'Danh mục này đang được sử dụng bạn vẫn muốn xoá chứ?' : 'Bạn muốn xoá danh mục này chứ?' ?>')">
+                                                        onclick="return confirm('Bạn muốn xóa sản phẩm này chứ')">
                                                         <i class="bx bx-x font-weight-bold"></i>
                                                     </a>
                                                 </td>
@@ -85,12 +109,12 @@ $target_dir = "../uploads/";
                             </div>
                             <div class="card-footer bg-transparent ">
                                 <div class="float-right m-2">
-                                    <input type="submit" value="Xoá các mục đã chọn" name="delete-dm"
+                                    <input type="submit" value="Xoá các mục đã chọn" name="delete-sp"
                                         class="btn btn-outline-danger">
-                                    <a href="?act=listdm" class="btn btn-outline-success">Bỏ chọn tất cả</a>
-                                    <a href="?act=listdm&checkAll" class="btn btn-outline-success">Chọn tất cả</a>
-                                    <a href="?act=adddm" class="btn btn-success "> <i class="bx bx-plus pr-1"></i>Thêm
-                                        danh mục</a>
+                                    <a href="?act=listsp" class="btn btn-outline-success">Bỏ chọn tất cả</a>
+                                    <a href="?act=listsp&checkAll" class="btn btn-outline-success">Chọn tất cả</a>
+                                    <a href="?act=addsp" class="btn btn-success "> <i class="bx bx-plus pr-1"></i>Thêm
+                                        sản phẩm</a>
                                 </div>
                             </div>
                         </form>

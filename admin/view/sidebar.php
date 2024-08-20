@@ -18,11 +18,6 @@
                                   chủ</span></a>
                       </li>
                       <li>
-                          <a href="?act=message" class="waves-effect"><i class="bx bx-message-rounded-dots"></i><span>Trò
-                                  chuyện</span></a>
-
-                      </li>
-                      <li>
                           <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="bx bx-grid-alt"></i><span>Quản lý danh mục</span></a>
                           <ul class="sub-menu" aria-expanded="false">
                               <li><a href="?act=adddm">Thêm danh mục</a></li>

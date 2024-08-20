@@ -8,14 +8,14 @@ $list_danh_muc = loai_select_all();
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-flex align-items-center justify-content-between">
-                        <h4 class="mb-0 font-size-18">Quản lý danh mục</h4>
+                        <h4 class="mb-0 font-size-18">Quản lý sản phẩm</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item">
-                                    <a href="javascript: void(0);">Quản lý danh mục</a>
+                                    <a href="javascript: void(0);">Quản lý sản phẩm</a>
                                 </li>
-                                <li class="breadcrumb-item active">Thêm danh mục</li>
+                                <li class="breadcrumb-item active">Thêm sản phẩm</li>
                             </ol>
                         </div>
                     </div>
@@ -55,7 +55,7 @@ $list_danh_muc = loai_select_all();
                                     </select>
                                 </div>
                                 <div class="float-right ">
-                                    <a href="?act=listdm" class="btn btn-outline-success">Danh sách sản phẩm</a>
+                                    <a href="?act=listsp" class="btn btn-outline-success">Danh sách sản phẩm</a>
                                     <input type="submit" id="inputError" class="btn btn-success" value="Thêm sản phẩm" name="add-sp">
                                 </div>
                             </form>

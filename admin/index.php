@@ -7,6 +7,9 @@ include_once("../model/pdo.php");
 include_once("../model/loai.php");
 include_once("../model/san-pham.php");
 include_once("../model/toast-message.php");
+include_once("../model/detail-san-pham.php");
+include_once("../model/do-an-them.php");
+include_once("../model/size.php");
 include_once("./view/header.php");
 include_once("./view/sidebar.php");
 if (isset($_GET['act']) && $_GET['act']) {
@@ -73,29 +76,77 @@ if (isset($_GET['act']) && $_GET['act']) {
             } else
                 include_once 'view/danh-muc/update.php';
             break;
-            case 'addsp':
-                if (isset($_POST['add-sp']) && $_POST['add-sp']) {
-                    $ten_san_pham = $_POST['ten_san_pham'];
-                    $price = $_POST['price'];
-                    $mo_ta= $_POST['mo_ta'];
-                    $ngay_nhap=date('Y-m-d H:i:s');
-                    $id_danh_muc = $_POST['id_danh_muc'];
-                    $hinh_anh = $_FILES['hinh_anh']['name'];
-                    $target_dir = "../uploads/";
-                    $target_file = $target_dir . basename($_FILES["hinh_anh"]["name"]);
-                    if (move_uploaded_file($_FILES["hinh_anh"]["tmp_name"], $target_file)) {
-                        them_moi_san_pham($ten_san_pham,$price,$mo_ta,$hinh_anh,0,$ngay_nhap,$id_danh_muc);
-                    }
-    
-                    showSuccessToast('Bạn đã thêm sản phẩm thành công!');
+        case 'addsp':
+            if (isset($_POST['add-sp']) && $_POST['add-sp']) {
+                $ten_san_pham = $_POST['ten_san_pham'];
+                $price = $_POST['price'];
+                $mo_ta = $_POST['mo_ta'];
+                $ngay_nhap = date('Y-m-d H:i:s');
+                $id_danh_muc = $_POST['id_danh_muc'];
+                $hinh_anh = $_FILES['hinh_anh']['name'];
+                $target_dir = "../uploads/";
+                $target_file = $target_dir . basename($_FILES["hinh_anh"]["name"]);
+                if (move_uploaded_file($_FILES["hinh_anh"]["tmp_name"], $target_file)) {
+                    them_moi_san_pham($ten_san_pham, $price, $mo_ta, $hinh_anh, 0, $ngay_nhap, $id_danh_muc);
                 }
-    
-                include_once 'view/san-pham/add.php';
-                break;
+
+                showSuccessToast('Bạn đã thêm sản phẩm thành công!');
+            }
+
+            include_once 'view/san-pham/add.php';
+            break;
+        case 'listsp':
+            $list_san_pham = loadall_san_pham();
+            include_once 'view/san-pham/list.php';
+            break;
+        case 'delete-sp':
+            if (isset($_GET['id-sp'])) {
+                // echo $_GET['id-sp'];
+                xoa_san_pham($_GET['id-sp']);
+                showSuccessToast('Bạn đã xoá sản phẩm thành công!');
+            }
+            $list_san_pham = loadall_san_pham();
+            include_once 'view/san-pham/list.php';
+            break;
+        case 'update-sp':
+            if (isset($_GET['id-sp'])) {
+                $san_pham = load_san_pham_id($_GET['id-sp']);
+            }
+            if (isset($_POST['update-sp']) && $_POST['update-sp']) {
+                $id_san_pham = $_POST['id_san_pham'];
+                $ten_san_pham = $_POST['ten_san_pham'];
+                $price = $_POST['price'];
+                $mo_ta = $_POST['mo_ta'];
+                $id_danh_muc = $_POST['id_danh_muc'];
+                $hinh_anh = $_FILES['hinh_anh']['name'];
+                $target_dir = "../uploads/";
+                $target_file = $target_dir . basename($_FILES["hinh_anh"]["name"]);
+                move_uploaded_file($_FILES["hinh_anh"]["tmp_name"], $target_file);
+                update_san_pham($id_san_pham,$ten_san_pham,$price,$mo_ta,$hinh_anh,$id_danh_muc);
+                showSuccessToast('Bạn đã cập nhập sản phẩm thành công!');
+                $list_san_pham = loadall_san_pham();
+                include_once 'view/san-pham/list.php';
+            } else
+                include_once 'view/san-pham/update.php';
+            break;
+        case 'add-detail-sp':
+            if(isset($_POST['add-detail-sp']) && $_POST['add-detail-sp']){
+                $id_san_pham = $_POST['id_san_pham'];
+                $so_luong = $_POST['so_luong'];
+                $id_size = $_POST['id_size'];
+                $id_do_an_them = $_POST['id_do_an_them'];
+                $ngay_nhap = date('Y-m-d');
+                insert_chi_tiet_sp($so_luong,$ngay_nhap,$id_san_pham,$id_size,$id_do_an_them);
+                showSuccessToast('Bạn đã thêm mới thành công!');
+            }
+            $list_san_pham = loadall_san_pham();
+            $list_size= loadall_size();
+            $list_do_an_them= loadall_do_an_them();
+            include_once 'view/san-pham/add-detail.php';
+            break;
     }
 }
 
 include("./view/footer.php");
 
 ?>
-<script src=""></script>
