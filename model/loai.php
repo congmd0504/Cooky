@@ -99,3 +99,9 @@ function loai_select_order_by_asc($colum)
     $sql = "SELECT * FROM danh_muc ORDER BY $colum ASC";
     return pdo_query($sql);
 }
+function loadall_danhmuc_trangchu()
+{
+    // Ẩn "Tất cả" ở trang homepage
+    $sql = "SELECT * FROM danh_muc order by id_Danh_muc asc limit 1,12";
+    return  pdo_query($sql);
+}

@@ -6,25 +6,5 @@
     position: relative;
     color: #fff;
     padding-top: 100px;
-    padding-bottom: 70px;
     margin-top: 30px;
-}
-.footer .row{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-.footer .footer-title,
-.footer ul li{
-    font-size: 16px;
-    margin-bottom: 16px;
-}
-.copyright-img img{
-    border-radius: 50%;
-}
-.footer-title{
-    font-weight: 700;
-}
-.text-copyright h4{
-    margin: 18px 0;
 }

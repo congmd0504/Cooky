@@ -17,7 +17,7 @@
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/theme.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="icon" href="../assets/images/logo/logo.png" type="image/png" sizes="92x92">
+    <link rel="icon" type="image/x-icon" href="assets/images/logo/favicon-96x96.png">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 

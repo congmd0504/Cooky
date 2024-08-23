@@ -3,7 +3,7 @@
           <div data-simplebar class="h-100">
               <div class="navbar-brand-box">
                   <a href="index.php" class="logo">
-                      <span class="h1 mt-3" style="color:red;">GIN FOOD</span>
+                      <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695381181/cooky%20market%20-%20PHP/cva2ntghjzrlryixcojp.svg" style="height: 50px;" alt="">
                   </a>
               </div>
 
