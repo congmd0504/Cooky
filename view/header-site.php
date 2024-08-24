@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php 
+ob_start();
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +58,6 @@
                     <div class="phone action n-btn">
                         <a href="tel:19002041">
                             <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695386173/cooky%20market%20-%20PHP/u5u581opcqe1nlesw2bn.svg" alt="Hotline" class="icon">
-                            
                         </a>
                     </div>
                     <div class="hotline action view-city">
@@ -63,11 +66,11 @@
                     </div>
                     
                     <?php 
-                    if(isset($_SESSION['user'])){
-                        extract($_SESSION['user']);
+                    if(isset($_SESSION['login'])){
+                        extract($_SESSION['login']);
                     ?>
                     <div class="hotline action login ">
-                            <a style="text-decoration: none; color:white" href="index.php?act=form_account"><img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695381877/cooky%20market%20-%20PHP/wb5pyhdq2alh6cx8ml82.svg" alt="Login" class="icon"><p><?=$user?></p></a>
+                            <a style="text-decoration: none; color:white" href="index.php?act=form_account"><img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695381877/cooky%20market%20-%20PHP/wb5pyhdq2alh6cx8ml82.svg" alt="Login" class="icon"><p><?=$ten_dang_nhap?></p></a>
                         </div>
                     <?php 
                 }else{ 

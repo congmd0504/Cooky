@@ -36,4 +36,10 @@ function san_pham_top(){
     JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc ORDER BY san_pham.luot_xem DESC";
     return pdo_query($sql);
 }
+function san_pham_lien_quan($id_san_pham, $id_danh_muc)
+{
+    $sql = "SELECT * FROM san_pham WHERE id_danh_muc = ? AND id_san_pham <> ? LIMIT 0,6";
+    return  pdo_query($sql,$id_danh_muc,$id_san_pham);
+}
+
 ?>

@@ -5,7 +5,7 @@ function insert_chi_tiet_sp($so_luong,$ngay_nhap,$id_san_pham,$id_size,$id_do_an
     pdo_execute($sql,$so_luong,$ngay_nhap,$id_san_pham,$id_size,$id_do_an_them);
 }
 function select_chi_tiet_san_pham($id_san_pham){
-    $sql = "SELECT chi_tiet_san_pham.id_san_pham, chi_tiet_san_pham.id_chi_tiet_san_pham, chi_tiet_san_pham.so_luong,san_pham.ten_san_pham AS ten_san_pham,
+    $sql = "SELECT chi_tiet_san_pham.id_size,chi_tiet_san_pham.id_do_an_them,chi_tiet_san_pham.id_san_pham, chi_tiet_san_pham.id_chi_tiet_san_pham, chi_tiet_san_pham.so_luong,san_pham.ten_san_pham AS ten_san_pham,
     size.size,do_an_them.do_an_them FROM chi_tiet_san_pham JOIN san_pham ON san_pham.id_san_pham = chi_tiet_san_pham.id_san_pham JOIN size ON size.id_size=chi_tiet_san_pham.id_size JOIN do_an_them ON do_an_them.id_do_an_them= chi_tiet_san_pham.id_do_an_them WHERE chi_tiet_san_pham.id_san_pham = ?";
     return pdo_query($sql,$id_san_pham);
 }

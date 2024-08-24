@@ -1,5 +1,5 @@
-
-<footer class="footer text-center text-lg-start text-white">
+<div class="footer">
+<footer class=" container  text-center text-lg-start text-white">
 
     <div class="row ">
 
@@ -88,14 +88,14 @@
         </ul>
       </div>
     </div>
+    
+  </footer>
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
     © 2024 Copyright:
     <a class="text-white" href="https://www.cooky.vn">cooky.vn</a>
   </div>
-
-</footer>
-
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
