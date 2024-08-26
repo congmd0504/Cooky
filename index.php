@@ -4,6 +4,8 @@ include_once("./global.php");
 include_once('./model/san-pham.php');
 include_once('./model/loai.php');
 include_once('./model/tai-khoan.php');
+include_once('./model/khau-phan.php');
+include_once('./model/do-an-them.php');
 include_once('./model/detail-san-pham.php');
 include_once("./view/header-site.php");
 $listdanhmuc = loadall_danhmuc_trangchu();
@@ -21,10 +23,11 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     extract($productDetail);
                     $categoryDetail = loai_select_by_id($id_danh_muc); // Sửa tham số truyền vào từ $id thành $iddm
                     $productRelated = san_pham_lien_quan($id_san_pham, $id_danh_muc);
-
+                    $khau_phan = loadall_khau_phan();
+                    $do_an_them = loadall_do_an_them();
                     $chi_tiet_san_pham = select_chi_tiet_san_pham($id_san_pham);
                     // $list_comment = comment_select_all($id);
-                    include("view/san-pham//product-detail.php");
+                    include("view/san-pham/product-detail.php");
                 } else {
                     include("view/homepage.php");
                 }
@@ -115,6 +118,54 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 header('Location: index.php');
                 include "view/auth/login.php";
                 break;
+        case 'profile-edit':
+            // Validate form profile-edit
+            $error = [];
+            if (isset($_POST['submit']) && ($_POST['submit'])) {
+                $ho_ten = $_POST['ho_ten'];
+                $email = $_POST['email'];
+                $dia_chi = $_POST['dia_chi'];
+                $phone = $_POST['phone'];
+                // Validate username
+                if (empty($ho_ten)) {
+                    $error['ho_ten'] = "* Tên người dùng không được để trống";
+                }
+                // Validate email
+                if (empty($email)) {
+                    $error['email'] = "* Email không được để trống";
+                } else if (!preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/', $email)) {
+                    $error['email'] = '* Vui lòng nhập lại, email không đúng định dạng';
+                }
+                // Validate address
+                if (empty($dia_chi)) {
+                    $error['dia_chi'] = "* Địa chỉ người dùng không được để trống";
+                }
+                // Validate phone
+                if (empty($phone)) {
+                    $error['phone'] = "* Số điện thoại không được để trống";
+                } else if (!preg_match('/(84|0[3|5|7|8|9])+([0-9]{8})\b/', $phone)) {
+                    $error['phone'] = 'Vui lòng nhập lại, số điện thoại không đúng định dạng';
+                }
+                if (!$error) {
+                    $id_khach_hang = $_POST['id_khach_hang'];
+                    $ho_ten = $_POST['ho_ten'];
+                    $email = $_POST['email'];
+                    $dia_chi = $_POST['dia_chi'];
+                    $phone = $_POST['phone'];
+
+                    $hinh_anh = $_FILES['hinh_anh']['name'];
+                    $target_dir = "./uploads/";
+                    $target_file = $target_dir . basename($_FILES["hinh_anh"]["name"]);
+                    move_uploaded_file($_FILES["hinh_anh"]["tmp_name"], $target_file);
+                    account_update($id_khach_hang,$ho_ten,$email,$phone,$hinh_anh,$dia_chi,);
+                    $message_success = "Cập nhật thông tin thành công";
+                    $_SESSION['login'] = taikhoan_select_by_id($id_khach_hang);
+                    header('Location: index.php?act=profile-edit');
+                    exit;
+                }
+            }
+            include("view/auth/profile-edit.php");
+            break;
     }
 } else {
     include_once("./view/homepage.php");

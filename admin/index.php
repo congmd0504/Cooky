@@ -9,7 +9,7 @@ include_once("../model/san-pham.php");
 include_once("../model/toast-message.php");
 include_once("../model/detail-san-pham.php");
 include_once("../model/do-an-them.php");
-include_once("../model/size.php");
+include_once("../model/khau-phan.php");
 include_once("../model/roles.php");
 include_once("../model/user.php");
 include_once("./view/header.php");
@@ -135,14 +135,14 @@ if (isset($_GET['act']) && $_GET['act']) {
             if (isset($_POST['add-detail-sp']) && $_POST['add-detail-sp']) {
                 $id_san_pham = $_POST['id_san_pham'];
                 $so_luong = $_POST['so_luong'];
-                $id_size = $_POST['id_size'];
+                $id_khau_phan = $_POST['id_khau_phan'];
                 $id_do_an_them = $_POST['id_do_an_them'];
                 $ngay_nhap = date('Y-m-d');
-                insert_chi_tiet_sp($so_luong, $ngay_nhap, $id_san_pham, $id_size, $id_do_an_them);
+                insert_chi_tiet_sp($so_luong, $ngay_nhap, $id_san_pham, $id_khau_phan, $id_do_an_them);
                 showSuccessToast('Bạn đã thêm mới thành công!');
             }
             $list_san_pham = loadall_san_pham();
-            $list_size = loadall_size();
+            $list_khau_phan = loadall_khau_phan();
             $list_do_an_them = loadall_do_an_them();
             include_once 'view/san-pham/add-detail.php';
             break;
@@ -168,14 +168,14 @@ if (isset($_GET['act']) && $_GET['act']) {
                 $id_chi_tiet_san_pham = $_POST['id_chi_tiet_san_pham'];
                 $id_san_pham = $_POST['id_san_pham'];
                 $so_luong = $_POST['so_luong'];
-                $id_size = $_POST['id_size'];
+                $id_khau_phan = $_POST['id_khau_phan'];
                 $id_do_an_them = $_POST['id_do_an_them'];
-                update_chi_tiet_san_pham($id_chi_tiet_san_pham, $so_luong, $id_size, $id_do_an_them);
+                update_chi_tiet_san_pham($id_chi_tiet_san_pham, $so_luong, $id_khau_phan, $id_do_an_them);
                 showSuccessToast('Bạn đã cập nhập thành công!');
                 header('location: index.php?act=list-detail&id=' . $id_san_pham);
             }
             $list_san_pham = loadall_san_pham();
-            $list_size = loadall_size();
+            $list_khau_phan = loadall_khau_phan();
             $list_do_an_them = loadall_do_an_them();
             include_once 'view/san-pham/update-detail.php';
             break;

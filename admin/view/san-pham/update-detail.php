@@ -49,13 +49,13 @@ $detail_by_id= select_chi_tiet_san_pham_by_id($_GET['id']);
                                 </div>
                                 <div class="col-6">
                                 <div class="form-group">
-                                    <label for="simpleinput">Size</label>
-                                    <select name="id_size" class="form-control" id="">
-                                        <?php foreach($list_size as $size) :?>
-                                            <option value="<?=$size['id_size']?>"
-                                            <?php if( $size['id_size'] == $detail_by_id['id_size'] ){
+                                    <label for="simpleinput">Khẩu phần</label>
+                                    <select name="id_khau_phan" class="form-control" id="">
+                                        <?php foreach($list_khau_phan as $khau_phan) :?>
+                                            <option value="<?=$khau_phan['id_khau_phan']?>"
+                                            <?php if( $khau_phan['id_khau_phan'] == $detail_by_id['id_khau_phan'] ){
                                                echo "selected"; } ?>
-                                            ><?=$size['size']?></option>
+                                            ><?=$khau_phan['khau_phan']?></option>
                                             <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -73,7 +73,7 @@ $detail_by_id= select_chi_tiet_san_pham_by_id($_GET['id']);
                                 <input type="text" name="id_chi_tiet_san_pham" value="<?=$detail_by_id['id_chi_tiet_san_pham']?>" hidden>
                                 <div class="float-right ">
                                     <!-- <a href="?act=listdm" class="btn btn-outline-success">Danh sách danh mục</a> -->
-                                    <input type="submit" id="inputError" class="btn btn-success" value="Thêm sản phẩm chi tiết" name="update-detail-sp">
+                                    <input type="submit" id="inputError" class="btn btn-success" value="Cập nhập sản " name="update-detail-sp">
                                 </div>
                                 </div>
                             </form>

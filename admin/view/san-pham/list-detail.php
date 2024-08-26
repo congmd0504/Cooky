@@ -38,7 +38,7 @@
                                             <th>ID</th>
                                             <th>Tên sản phẩm</th>
                                             <th>Số lượng</th>
-                                            <th>Size</th>
+                                            <th>Khẩu phần</th>
                                             <th>Đồ ăn thêm</th>
                                             <th>Hành động</th>
                                         </tr>
@@ -55,7 +55,7 @@
                                                     <?php echo $detail['id_chi_tiet_san_pham'] ?></td>
                                                 <td><?php echo $detail['ten_san_pham'] ?></td>
                                                 <td><?php echo $detail['so_luong'] ?></td>
-                                                <td class="text-info"><?php echo $detail['size'] ?></td>
+                                                <td class="text-info"><?php echo $detail['khau_phan'] ?></td>
                                                 <td><?php echo $detail['do_an_them'] ?></td>
                                                 <td>
                                                     <a href="?act=update-detail-sp&id=<?php echo $detail['id_chi_tiet_san_pham'] ?>&idsp=<?php echo $detail['id_san_pham'] ?>" class="btn btn-light text-center p-2 " data-toggle="tooltip" data-placement="top" title="Sửa"><i class="bx bx-pencil font-weight-bold"></i></a>
