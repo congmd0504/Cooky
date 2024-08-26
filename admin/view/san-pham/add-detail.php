@@ -40,10 +40,10 @@
                                 </div>
                                 <div class="col-6">
                                 <div class="form-group">
-                                    <label for="simpleinput">Size</label>
-                                    <select name="id_size" class="form-control" id="">
-                                        <?php foreach($list_size as $size) :?>
-                                            <option value="<?=$size['id_size']?>"><?=$size['size']?></option>
+                                    <label for="simpleinput">Khẩu phần</label>
+                                    <select name="id_khau_phan" class="form-control" id="">
+                                        <?php foreach($list_khau_phan as $khau_phan) :?>
+                                            <option value="<?=$khau_phan['id_khau_phan']?>"><?=$khau_phan['khau_phan']?></option>
                                             <?php endforeach; ?>
                                     </select>
                                 </div>
