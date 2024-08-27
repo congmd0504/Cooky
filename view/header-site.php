@@ -21,6 +21,7 @@ session_start();
     <link rel="stylesheet" href="./assets/css/invoice.css">
     <link rel="stylesheet" href="./assets/css/view-cart.css">
     <link rel="stylesheet" href="./assets/css/login.css">
+    <link rel="stylesheet" href="./assets/style.css">
     <link rel="stylesheet" href="./assets/css/comment-form.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -31,7 +32,7 @@ session_start();
     <div class="app">
         <header class="header">
             <div class="navigation-bar">
-                <div class="logo">
+                <div class="me-3">
                     <a href="./index.php">
                         <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695381181/cooky%20market%20-%20PHP/cva2ntghjzrlryixcojp.svg" alt="Logo Cooky">
                     </a>
