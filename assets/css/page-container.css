@@ -232,11 +232,7 @@
     font-weight: 700;
     margin-right: 6px;
 }
-.active {
-    border: 1px solid #f22726;
-    border-radius: 5px;
-    font-weight: bold;
-}
+
 .font-weight-bold {
     font-weight: bold;
     color: #f22726;

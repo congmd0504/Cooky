@@ -44,7 +44,7 @@ $formatCurrencyPrice = formatCurrency($price);
                             <div class="price ">
                                 <?php
                                 echo '
-                                    <div><span class="h4" id="price">Giá : <span class="h4 fw-bolder">' . $formatCurrencyPrice . '</span> </span> </div>';
+                                    <div><span class="h4 fw-bold" id="price">Giá : ' . $formatCurrencyPrice . ' </span> </div>';
                                 ?>
                             </div>
                         </div>
@@ -174,7 +174,9 @@ $formatCurrencyPrice = formatCurrency($price);
                     });
                 });
             </script>
-            <div id="comment"></div>
+            <div id="comment">
+                <?php  include ('./view/san-pham/binh-luan-danh-gia.php'); ?>
+            </div>
             <!-- Product related -->
             <div class="group-product-content">
                 <div class="title">Sản phẩm liên quan</div>

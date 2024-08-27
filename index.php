@@ -7,6 +7,7 @@ include_once('./model/tai-khoan.php');
 include_once('./model/khau-phan.php');
 include_once('./model/do-an-them.php');
 include_once('./model/detail-san-pham.php');
+include_once('./model/binh-luan.php');
 include_once("./view/header-site.php");
 $listdanhmuc = loadall_danhmuc_trangchu();
 $listdanhmuc_all = loai_select_all();
@@ -15,26 +16,7 @@ $topViewProductList = san_pham_top();
 if (isset($_GET['act']) && $_GET['act'] != "") {
     $act = $_GET['act'];
     switch ($act) {
-        case 'product-detail':
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                $id_san_pham = $_GET['id'];
-                $productDetail = load_san_pham_id($id_san_pham);
-                if ($productDetail) {
-                    extract($productDetail);
-                    $categoryDetail = loai_select_by_id($id_danh_muc); // Sửa tham số truyền vào từ $id thành $iddm
-                    $productRelated = san_pham_lien_quan($id_san_pham, $id_danh_muc);
-                    $khau_phan = loadall_khau_phan();
-                    $do_an_them = loadall_do_an_them();
-                    $chi_tiet_san_pham = select_chi_tiet_san_pham($id_san_pham);
-                    // $list_comment = comment_select_all($id);
-                    include("view/san-pham/product-detail.php");
-                } else {
-                    include("view/homepage.php");
-                }
-            } else {
-                include("view/homepage.php");
-            }
-            break;
+        
         case 'login':
             $kiem_tra_tai_khoan ="";
             if(isset($_POST['dangnhap']) && $_POST['dangnhap']){
@@ -58,6 +40,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     $checkuser = checkuser($ten_dang_nhap, $mat_khau);
                     if (is_array($checkuser)) {
                         $_SESSION['login'] = $checkuser;
+                        session_set_cookie_params(999999999);
                         extract($_SESSION['login']);
                         if($kich_hoat == 0){
                             $thongbao = "Đăng nhập thất bại .Tài khoản của bạn đã bị khóa";
@@ -165,6 +148,37 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 }
             }
             include("view/auth/profile-edit.php");
+            break;
+            case 'product-detail':
+                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                    $id_san_pham = $_GET['id'];
+                    $productDetail = load_san_pham_id($id_san_pham);
+                    if ($productDetail) {
+                        extract($productDetail);
+                        $categoryDetail = loai_select_by_id($id_danh_muc); // Sửa tham số truyền vào từ $id thành $iddm
+                        $productRelated = san_pham_lien_quan($id_san_pham, $id_danh_muc);
+                        $khau_phan = loadall_khau_phan();
+                        $do_an_them = loadall_do_an_them();
+                        $chi_tiet_san_pham = select_chi_tiet_san_pham($id_san_pham);
+                        // $list_comment = comment_select_all($id);
+                        include("view/san-pham/product-detail.php");
+                    } else {
+                        include("view/homepage.php");
+                    }
+                } else {
+                    include("view/homepage.php");
+                }
+                break;
+        case 'add-comment' :
+            if(isset($_POST['submit']) && $_POST['submit']){
+                $id_khach_hang = $_POST['id_khach_hang'];
+                $id_san_pham = $_POST['id_san_pham'];
+                $noi_dung = $_POST['noi_dung'];
+                $ngay_binh_luan = date('Y-m-d');
+                insert_binh_luan($id_khach_hang,$id_san_pham,$noi_dung,$ngay_binh_luan);
+                header("Location: index.php?act=product-detail&id=$id_san_pham");
+            }
+            // include_once ('view/san-pham/binh-luan-danh-gia.php');
             break;
     }
 } else {

@@ -23,10 +23,7 @@
                     <label class="label" for="username">Ảnh đại diện:</label>
                     <div class="form-group">
                         <img class='border rounded' id="preview-image" src="<?= $pathImage ?>" height='115' width='115' />
-                        <input class="form-control form-control-sm d-none" type="file" id="hinh_anh" name="hinh_anh" onchange="previewImage(this)">
-                        <label for="image" class="form-label label-for-file mt-3">
-                            <i class="fa-solid fa-file-image"></i>&nbsp;Chọn ảnh
-                        </label>
+                        <input class="form-control form-control" type="file" id="hinh_anh" name="hinh_anh">
                     </div>
                 </div>
                 <div class="row">

@@ -12,6 +12,8 @@ include_once("../model/do-an-them.php");
 include_once("../model/khau-phan.php");
 include_once("../model/roles.php");
 include_once("../model/user.php");
+include_once("../model/roles.php");
+include_once("../model/binh-luan.php");
 include_once("./view/header.php");
 include_once("./view/sidebar.php");
 if (isset($_GET['act']) && $_GET['act']) {
@@ -233,6 +235,12 @@ if (isset($_GET['act']) && $_GET['act']) {
             }else {
             include_once 'view/user/update.php';
             }
+            break;
+        case 'list-comment' :
+            include ('./view/binh-luan/list.php');
+            break;
+        case 'detail-comment' :
+            include ('./view/binh-luan/detail.php');
             break;
     }
 }
