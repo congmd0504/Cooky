@@ -11,6 +11,7 @@ $formatCurrencyPrice = formatCurrency($price);
 // print_r($_SESSION['login']);
 
 ?>
+
 <main class="page-container">
     <div class="page-wrapper">
         <div class="breadcrumb">
@@ -54,9 +55,7 @@ $formatCurrencyPrice = formatCurrency($price);
                         <div class="display-flex btn-cart-box">
                             <form action="index.php?act=add-to-cart" method="POST">
                                 <input type="hidden" name="id_san_pham" value="<?= $id_san_pham ?>" />
-                                <input type="hidden" name="ten_san_pham" value="<?= $ten_san_pham ?>" />
-                                <input type="hidden" name="price" value="<?= $price ?>" />
-                                <input type="hidden" name="hinh_anh" value="<?= $hinh_anh ?>" />
+                                <input type="hidden" name="id_khach_hang" value="<?= $_SESSION['login']['id_khach_hang'] ?>" />
                                 <span class="mt-4">Khẩu phần :</span><br>
                                 <?php foreach ($khau_phan as $value): ?>
                                     <label>
@@ -117,11 +116,11 @@ $formatCurrencyPrice = formatCurrency($price);
                                     });
                                 </script> <br>
                                 <div style="width: 173%;" class="text-end">
-                                    <button type="submit" name="add-to-cart" class="border rounded"
+                                    <input type="submit" name="add-to-cart" class="border rounded"
                                         style="height:54px ;width: 100%; background-color: #0a8dd8;">
                                         <span class="text-white"><i class="fa-solid fa-cart-plus pe-2"></i>Thêm vào
                                             giỏ</span>
-                                    </button>
+                                    </input>
                                 </div>
                             </form>
                             <!-- <button class="add-item-wrapper n-btn btn-add-to-cart btn-add-to-collection ">
@@ -225,3 +224,15 @@ $formatCurrencyPrice = formatCurrency($price);
     </div>
 
 </main>
+<?php if (isset($_GET['thongbao']) && ($_GET['thongbao'] == "error")): ?>
+    <script>
+        alert('Combo khẩu phần cùng đồ ăn thêm này đã hết !');
+    </script>
+
+<?php endif; ?>
+<?php if (isset($_GET['thongbao']) && ($_GET['thongbao'] == "success")): ?>
+    <script>
+        alert('Thêm vào giỏ hàng thành công !');
+    </script>
+
+<?php endif; ?>

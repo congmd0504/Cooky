@@ -8,6 +8,8 @@ include_once('./model/khau-phan.php');
 include_once('./model/do-an-them.php');
 include_once('./model/detail-san-pham.php');
 include_once('./model/binh-luan.php');
+include_once('./model/gio-hang.php');
+include_once('./model/tai-khoan.php');
 include_once("./view/header-site.php");
 $listdanhmuc = loadall_danhmuc_trangchu();
 $listdanhmuc_all = loai_select_all();
@@ -204,6 +206,35 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 break;
             }
             include ('./view/homepage.php');
+            break;
+        case 'add-to-cart':
+            if(isset($_POST['add-to-cart']) && $_POST['add-to-cart']){
+                $id_san_pham = $_POST['id_san_pham'];
+                $id_khau_phan = $_POST['id_khau_phan'];
+                $id_do_an_them = $_POST['id_do_an_them'];
+               
+                $check_id = check_id_chi_tiet_san_pham($id_khau_phan,$id_do_an_them);
+                if(empty($check_id)){
+                    $thongbao = "error" ;
+                    header("Location: index.php?act=product-detail&id=$id_san_pham&thongbao=" . urlencode($thongbao));
+                    exit(); 
+                } else {
+                    extract($check_id);
+                    $so_luong = 1;
+                    insert_gio_hang($id_khach_hang,$id_chi_tiet_san_pham,$so_luong);
+                    $thongbao = "success" ;
+                    header("Location: index.php?act=product-detail&id=$id_san_pham&thongbao=" . urlencode($thongbao));
+                }  
+            }
+            break;
+        case 'view-cart':
+            if (!isset($_SESSION['login'])) {
+                $thongbao= "Bạn cần đăng nhập để sử dụng chức năng giỏ hàng!";
+                include_once 'view/auth/login.php';
+            } else
+            $id_khach_hang = $_SESSION['login']['id_khach_hang'];
+            $gio_hang_all = select_gio_hang_by_id($id_khach_hang);
+            include_once 'view/cart/view-cart.php';
             break;
     }
 } else {
