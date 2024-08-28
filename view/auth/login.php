@@ -1,8 +1,8 @@
 <div class="container_login">
     <div class="box_login">
         <div class="title_login">
-            <a href="#"><button class="box_dangnhap">ĐĂNG NHẬP</button></a>
-            <a href="index.php?act=register"><button class="box_dangky">ĐĂNG KÝ </button></a>
+            <a href="#" class="text-black"><button class="box_dangnhap">ĐĂNG NHẬP</button></a>
+            <a href="index.php?act=register" class="text-black"><button class="box_dangky">ĐĂNG KÝ </button></a>
         </div>
         <div class="formtaikhoan">
             <form action="index.php?act=login" method="post">

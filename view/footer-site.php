@@ -83,7 +83,7 @@
             <p><i class="fas fa-phone pe-2"></i>02862861131</p>
           </li>
           <li>  
-            <p><i class="fas fa-envelope pe-2 mb-0"></i>cooky@gmail.com</p>
+            <p><i class="fas fa-envelope pe-2 mb-0"></i>congmd0504@gmail.com</p>
           </li>
         </ul>
       </div>
@@ -110,7 +110,14 @@
         }
     });
 </script>
-
+<script>
+            document.getElementById('search-input').addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    var searchValue = this.value;
+                    window.location.href = 'index.php?act=search&keyword=' + encodeURIComponent(searchValue);
+                }
+            });
+        </script>
 </body>
 
 </html>
