@@ -2,8 +2,8 @@
 <div class="container_login">
     <div class="box_login2">
          <div class="title_login">
-        <a href="index.php?act=login"><button class="box_dangnhap2">ĐĂNG NHẬP</button></a>
-        <a href="index.php?act=register"><button class="box_dangky2">ĐĂNG KÝ </button></a>
+        <a href="index.php?act=login" class="text-black"><button class="box_dangnhap2">ĐĂNG NHẬP</button></a>
+        <a href="index.php?act=register" class="text-black"><button class="box_dangky2">ĐĂNG KÝ </button></a>
             </div>
         <div class="formtaikhoan">
         <form action="index.php?act=register" method="post">

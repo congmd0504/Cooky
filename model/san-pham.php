@@ -38,8 +38,34 @@ function san_pham_top(){
 }
 function san_pham_lien_quan($id_san_pham, $id_danh_muc)
 {
-    $sql = "SELECT * FROM san_pham WHERE id_danh_muc = ? AND id_san_pham <> ? LIMIT 0,6";
+    $sql = "SELECT san_pham.id_danh_muc,san_pham.id_san_pham, san_pham.ten_san_pham,san_pham.price,san_pham.mo_ta,san_pham.hinh_anh,san_pham.luot_xem,san_pham.display_san_pham,san_pham.ngay_nhap,danh_muc.ten_danh_muc AS ten_danh_muc FROM san_pham JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc WHERE san_pham.id_danh_muc = ? AND san_pham.id_san_pham <> ? LIMIT 0,6";
     return  pdo_query($sql,$id_danh_muc,$id_san_pham);
 }
-
+function san_pham_select_all_no_param()
+{
+    $sql = "SELECT * FROM san_pham ORDER BY id_san_pham DESC";
+    return pdo_query($sql);
+}
+function hang_hoa_select_all($keyword, $category_id)
+{
+    $sql = "SELECT * FROM san_pham WHERE 1";
+    if ($keyword != "") {
+        $sql .= " AND ten_san_pham LIKE '%" . $keyword . "%'";
+    }
+    if ($category_id > 0) {
+        $sql .= " AND id_danh_muc = '" . $category_id . "'";
+    }
+    $sql .= " ORDER BY id_san_pham DESC";
+    return pdo_query($sql);
+}
+function product_search_by_keyword($keyword){
+    $sql = "SELECT san_pham.id_danh_muc,san_pham.id_san_pham, san_pham.ten_san_pham,san_pham.price,san_pham.mo_ta,san_pham.hinh_anh,san_pham.luot_xem,san_pham.display_san_pham,san_pham.ngay_nhap,danh_muc.ten_danh_muc AS ten_danh_muc FROM san_pham JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc ";
+    if($keyword != ""){
+        $sql.= "WHERE ten_san_pham LIKE '%".$keyword."%'";
+    }
+    $sql .=" ORDER BY id_san_pham DESC";
+    // echo $sql;
+    // die;
+    return pdo_query($sql);
+}
 ?>

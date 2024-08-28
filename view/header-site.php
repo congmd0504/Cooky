@@ -42,30 +42,24 @@ session_start();
                     <input tabindex="0" type="text" id="search-input" placeholder="Tìm kiếm sản phẩm...">
                 </div>
                 <div class="user">
-                    <a href="index.php?act=dowcooky" style="text-decoration: none;">
                     <div class="download-app-button">
-                    Tải App Cooky
+                    <i class="fas fa-phone pe-2"></i>Liên hệ
                         <div class="phone-hover">
                             <div class="phone-hover-text">
-                                <span>- Đặt hàng dễ dàng hơn</span>
-                                <span>- Theo dõi chi tiết đơn hàng</span>
+                            <p><i class="fas fa-phone pe-2"></i>02862861131</p>
+                            <p><i class="fas fa-envelope pe-2 mb-0"></i>congmd0504@gmail.com</p>
                             </div>
                         </div>
                     </div>
-                    </a>
-                    <button class="cart-icon action n-btn" title="Giỏ hàng">
+                    <div class="me-3"> 
+                        <select name="" id="" style="width: 120px;height: 38px;background-color: red; color: white; " class="text-center border-white form-select rounded-pill">
+                            <option value="" style="color: red;" class="bg-white" selected>Hà Nội</option>
+                            <option value="" style="color: red;"class="bg-white" >TP.HCM</option>
+                        </select>
+                        </div>
+                        <button class="cart-icon action n-btn" title="Giỏ hàng">
                         <a href="index.php?act=view-cart"><img class="icon" src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695386172/cooky%20market%20-%20PHP/fcmcexgvocebzmhuntfm.svg" alt="Cart"></a>
-                    </button>
-                    <div class="phone action n-btn">
-                        <a href="tel:19002041">
-                            <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695386173/cooky%20market%20-%20PHP/u5u581opcqe1nlesw2bn.svg" alt="Hotline" class="icon">
-                        </a>
-                    </div>
-                    <div class="hotline action view-city">
-                        <span class="user-name">Hà Nội</span>
-                        <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695387068/cooky%20market%20-%20PHP/ww9hqjdjddhfcrgdiokz.svg" alt="toggle" class="icon toggle">
-                    </div>
-                    
+                    </button>  
                     <?php 
                     if(isset($_SESSION['login'])){
                         extract($_SESSION['login']);

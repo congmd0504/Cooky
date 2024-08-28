@@ -152,11 +152,3 @@
     </div>
 
 </main>
-<script>
-    document.getElementById('search-input').addEventListener('keyup', function (event) {
-        if (event.key === 'Enter') {
-            var searchValue = this.value;
-            window.location.href = 'index.php?act=search&keyword=' + encodeURIComponent(searchValue);
-        }
-    });
-</script>

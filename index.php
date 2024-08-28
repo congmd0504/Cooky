@@ -40,7 +40,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     $checkuser = checkuser($ten_dang_nhap, $mat_khau);
                     if (is_array($checkuser)) {
                         $_SESSION['login'] = $checkuser;
-                        session_set_cookie_params(999999999);
+                        session_set_cookie_params(99999*60);
                         extract($_SESSION['login']);
                         if($kich_hoat == 0){
                             $thongbao = "Đăng nhập thất bại .Tài khoản của bạn đã bị khóa";
@@ -149,6 +149,22 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             include("view/auth/profile-edit.php");
             break;
+        case 'product':
+            if (isset($_GET['category_id'])) {
+                $category_id = $_GET['category_id'];
+                if ($category_id == 1) {
+                    $categoryDetail['ten_danh_muc'] = 'Tất cả';
+                    $productList = san_pham_select_all_no_param();
+                    include("view/san-pham/product-list.php");
+                } elseif ($category_id > 0) {
+                    $categoryDetail = loai_select_by_id($category_id);
+                    $productList = hang_hoa_select_all("", $category_id);
+                    include("view/san-pham/product-list.php");
+                }
+            } else {
+                include("view/homepage.php");
+            }
+            break;
             case 'product-detail':
                 if (isset($_GET['id']) && $_GET['id'] > 0) {
                     $id_san_pham = $_GET['id'];
@@ -179,6 +195,15 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 header("Location: index.php?act=product-detail&id=$id_san_pham");
             }
             // include_once ('view/san-pham/binh-luan-danh-gia.php');
+            break;
+        case 'search':
+            if(isset($_GET['keyword']) && $_GET['keyword'] != ""){
+                $key = $_GET['keyword'];
+                $productList= product_search_by_keyword($key);
+                include ('./view/san-pham/search.php');
+                break;
+            }
+            include ('./view/homepage.php');
             break;
     }
 } else {

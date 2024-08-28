@@ -67,12 +67,13 @@
     cursor: default;
 }
 
+
 .phone-hover {
     position: absolute;
     top: 40px;
     right: -10px;
     display: none;
-    width: 270px;
+    width: 180px;
     background-color: #fff;
     font-weight: 600;
     font-size: 16px;

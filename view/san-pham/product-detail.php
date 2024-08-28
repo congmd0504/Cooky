@@ -8,6 +8,7 @@ $saveMoney = round($price / 1000);
 // formatCurrency
 $formatCurrencyPrice = formatCurrency($price);
 
+// print_r($_SESSION['login']);
 
 ?>
 <main class="page-container">
@@ -39,8 +40,8 @@ $formatCurrencyPrice = formatCurrency($price);
                 </div>
                 <div class="package-info">
                     <div class="basic-info-box">
-                        <h1 class="name text-center"><?= $ten_san_pham ?></h1>
-                        <div class="price-x">
+                        <h1 class="name text-center fs-4"><?= $ten_san_pham ?></h1>
+                        <div class="price-x mt-2">
                             <div class="price ">
                                 <?php
                                 echo '
@@ -199,7 +200,7 @@ $formatCurrencyPrice = formatCurrency($price);
                                         </div>
                                     </div>
                                     <div class="promotion-name two-lines ">' . $product['ten_san_pham'] . '</div>
-                                    <div class="product-weight">?</div>
+                                    <div class="product-weight">'.$product['ten_danh_muc'].'</div>
                                     <div class="d-flex justify-content-end">
                                         <div class="price-action">
                                             <div class="d-flex-align-items-baseline">
