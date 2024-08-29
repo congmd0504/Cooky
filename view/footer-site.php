@@ -1,3 +1,9 @@
+<?php if (isset($thongbao) && ($thongbao != "")): ?>
+            <script>
+                alert('<?= $thongbao ?>');
+            </script>
+
+        <?php endif; ?>
 <div class="footer">
 <footer class=" container  text-center text-lg-start text-white">
 
@@ -99,7 +105,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-
 <script>
     var swiper = new Swiper(".swiper-container", {
         spaceBetween: 30,

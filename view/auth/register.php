@@ -27,10 +27,6 @@
         </form>
 
        </div>
-       <?php if (isset($thongbao) && ($thongbao != "")): ?>
-            <script>
-                alert('<?= $thongbao ?>');
-            </script>
-        <?php endif; ?>
+      
     </div>
     </div>
