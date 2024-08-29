@@ -1,6 +1,7 @@
 <?php 
 ob_start();
 session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +27,10 @@ session_start();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </head>
 
 <body>
@@ -57,8 +62,20 @@ session_start();
                             <option value="" style="color: red;"class="bg-white" >TP.HCM</option>
                         </select>
                         </div>
-                        <button class="cart-icon action n-btn" title="Giỏ hàng">
-                        <a href="index.php?act=view-cart"><img class="icon" src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695386172/cooky%20market%20-%20PHP/fcmcexgvocebzmhuntfm.svg" alt="Cart"></a>
+                        <button class="cart-icon action n-btn " title="Giỏ hàng">
+                        <a class="d-flex text-decoration-none" href="index.php?act=view-cart"><img class="icon" src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695386172/cooky%20market%20-%20PHP/fcmcexgvocebzmhuntfm.svg" alt="Cart">
+                        <span style="margin-top:-6px; margin-left: -7px; width: 20px; height:20px; color:red;" class="rounded-circle bg-white">
+                            <?php 
+                            if (isset($_SESSION['login'])){
+                                $id_khach_hang = $_SESSION['login']['id_khach_hang'];
+                                $gio_hang = dem_gio_hang($id_khach_hang);
+                                $dem_gio_hang= count($gio_hang);
+                                echo $dem_gio_hang;
+                            } else{
+                                echo 0;
+                            }
+                            ?>
+                        </span></a>
                     </button>  
                     <?php 
                     if(isset($_SESSION['login'])){

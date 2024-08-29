@@ -116,10 +116,9 @@ $formatCurrencyPrice = formatCurrency($price);
                                     });
                                 </script> <br>
                                 <div style="width: 173%;" class="text-end">
-                                    <input type="submit" name="add-to-cart" class="border rounded"
+                                    <input class="text-white border rounded" type="submit" value="Thêm vào giỏ hàng" name="add-to-cart" class="border rounded"
                                         style="height:54px ;width: 100%; background-color: #0a8dd8;">
-                                        <span class="text-white"><i class="fa-solid fa-cart-plus pe-2"></i>Thêm vào
-                                            giỏ</span>
+                                       
                                     </input>
                                 </div>
                             </form>
@@ -224,15 +223,11 @@ $formatCurrencyPrice = formatCurrency($price);
     </div>
 
 </main>
-<?php if (isset($_GET['thongbao']) && ($_GET['thongbao'] == "error")): ?>
-    <script>
-        alert('Combo khẩu phần cùng đồ ăn thêm này đã hết !');
-    </script>
-
-<?php endif; ?>
-<?php if (isset($_GET['thongbao']) && ($_GET['thongbao'] == "success")): ?>
-    <script>
-        alert('Thêm vào giỏ hàng thành công !');
-    </script>
-
-<?php endif; ?>
+<?php
+if(isset($_GET['thongbao']) && $_GET['thongbao'] == "error"){
+    displayToastrMessageError("Combo khẩu phần và đồ ăn thêm này đã hết!");
+}
+if (isset($_GET['thongbao']) && ($_GET['thongbao'] == "success")){
+    displayToastrMessageSuccess("Thêm vào giỏ hàng thành công!");
+}
+?>
