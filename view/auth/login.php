@@ -9,14 +9,7 @@
                 <input type="text" class="login_user" name="ten_dang_nhap" placeholder="Tên đăng nhập"
                     value="<?php echo isset($_POST['ten_dang_nhap']) ? htmlspecialchars($_POST['ten_dang_nhap']) : ''; ?>">
                 <br>
-                <?php if (!empty($thongbao_user)) { ?>
-                    <span style="color: red;"><?php echo $thongbao_user; ?></span><br>
-                <?php } ?>
                 <input type="password" class="login_user" name="mat_khau" placeholder="Mật khẩu"> <br>
-                <?php if (!empty($thongbao_pass)) { ?>
-                    <span style="color: red;"><?php echo $thongbao_pass; ?></span><br>
-                <?php } ?>
-
                 <input type="submit" class="button_submit" value="ĐĂNG NHẬP" name="dangnhap">
 
                 <div class="user-foot">

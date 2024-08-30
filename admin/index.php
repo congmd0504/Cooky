@@ -4,6 +4,7 @@ ob_start();
 date_default_timezone_set("Asia/Ho_Chi_Minh");
 $ngay_nhap_str = '19/08/2024 21:03:02';
 include_once("../model/pdo.php");
+include_once("../global.php");
 include_once("../model/loai.php");
 include_once("../model/san-pham.php");
 include_once("../model/toast-message.php");
@@ -14,6 +15,7 @@ include_once("../model/roles.php");
 include_once("../model/user.php");
 include_once("../model/roles.php");
 include_once("../model/binh-luan.php");
+include_once("../model/giam-gia.php");
 include_once("./view/header.php");
 include_once("./view/sidebar.php");
 if (isset($_GET['act']) && $_GET['act']) {
@@ -241,6 +243,68 @@ if (isset($_GET['act']) && $_GET['act']) {
             break;
         case 'detail-comment' :
             include ('./view/binh-luan/detail.php');
+            break;
+        case 'add-gg':
+            if(isset($_POST['addgg']) && $_POST['addgg']){
+                $code = $_POST['code'];
+                $giam_gia= $_POST['giam_gia'];
+                $so_luong =$_POST['so_luong'];
+                $ngay_het_han = $_POST['ngay_het_han'];
+                if(empty($code)){
+                    displayToastrMessageError("Vui lòng không bỏ trống code !");
+                }
+                if(empty($giam_gia)){
+                    displayToastrMessageError("Vui lòng không bỏ trống giảm giá !");
+                }
+                if(empty($so_luong)){
+                    displayToastrMessageError("Vui lòng không bỏ trống số lượng !");
+                }
+                if(empty($ngay_het_han)){
+                    displayToastrMessageError("Vui lòng không bỏ trống ngày hết hạn !");
+                }
+                if(!empty($code) && !empty($giam_gia) && !empty($so_luong) && !empty($ngay_het_han)) {
+                    insert_giam_gia($code,$giam_gia,$so_luong,$ngay_het_han);
+                    displayToastrMessageSuccess("Tạo mã giảm giá thành công !");
+                }
+            }
+            include ('./view/giam-gia/add.php');
+            break;
+        case 'list-gg':
+            include ('./view/giam-gia/list.php');
+            break;
+        case 'delete-gg':
+            if(isset($_GET['id']) && $_GET['id']){
+                $id_ma_giam_gia= $_GET['id'];
+                delete_giam_gia($id_ma_giam_gia);
+                displayToastrMessageSuccess("Xóa mã giảm giá thành công !");
+            }
+            include ('./view/giam-gia/list.php');
+            break;
+        case 'update-gg':
+            if(isset($_POST['update-gg']) && $_POST['update-gg']){
+                $code = $_POST['code'];
+                $giam_gia= $_POST['giam_gia'];
+                $so_luong =$_POST['so_luong'];
+                $ngay_het_han = $_POST['ngay_het_han'];
+                $id_ma_giam_gia= $_POST['id_ma_giam_gia'];
+                if(empty($code)){
+                    displayToastrMessageError("Vui lòng không bỏ trống code !");
+                }
+                if(empty($giam_gia)){
+                    displayToastrMessageError("Vui lòng không bỏ trống giảm giá !");
+                }
+                if(empty($so_luong)){
+                    displayToastrMessageError("Vui lòng không bỏ trống số lượng !");
+                }
+                if(empty($ngay_het_han)){
+                    displayToastrMessageError("Vui lòng không bỏ trống ngày hết hạn !");
+                }
+                if(!empty($code) && !empty($giam_gia) && !empty($so_luong) && !empty($ngay_het_han)) {
+                    update_ma_giam_gia($id_ma_giam_gia,$code,$giam_gia,$so_luong,$ngay_het_han);
+                    header('location: index.php?act=update-gg&id=' . $id_ma_giam_gia.'&thongbao=success');
+                }
+            }
+            include ('./view/giam-gia/update.php');
             break;
     }
 }
