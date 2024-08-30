@@ -1,5 +1,14 @@
 <?php 
   include_once ("pdo.php");
+  function gio_hang_insert_and_update($id_khach_hang, $id_chi_tiet_san_pham, $so_luong)
+{
+    if (gio_hang_exist($id_chi_tiet_san_pham)) {
+        gio_hang_update_so_luong($so_luong, $id_chi_tiet_san_pham, $id_khach_hang);
+    } else {
+      $sql ="INSERT INTO gio_hang (id_khach_hang,id_chi_tiet_san_pham,so_luong) VALUES (?,?,?)";
+      pdo_execute($sql,$id_khach_hang,$id_chi_tiet_san_pham,$so_luong);
+    }
+  }
   function insert_gio_hang($id_khach_hang,$id_chi_tiet_san_pham,$so_luong){
     $sql ="INSERT INTO gio_hang (id_khach_hang,id_chi_tiet_san_pham,so_luong) VALUES (?,?,?)";
     pdo_execute($sql,$id_khach_hang,$id_chi_tiet_san_pham,$so_luong);
@@ -20,4 +29,22 @@
     $sql ="SELECT DISTINCT id_chi_tiet_san_pham FROM gio_hang WHERE id_khach_hang =?";
     return pdo_query($sql,$id_khach_hang);
   }
+  function gio_hang_exist($id_chi_tiet_san_pham)
+{
+    $sql = "SELECT count(*) FROM gio_hang WHERE id_chi_tiet_san_pham=?";
+    return pdo_query_value($sql, $id_chi_tiet_san_pham) > 0;
+}
+function gio_hang_update_so_luong($so_luong, $id_chi_tiet_san_pham, $id_khach_hang)
+{
+    $sql = "UPDATE gio_hang SET so_luong=so_luong+? WHERE id_chi_tiet_san_pham=? AND id_khach_hang = ?";
+    pdo_execute($sql, $so_luong, $id_chi_tiet_san_pham, $id_khach_hang);
+}
+function tang_so_luong_gio_hang($id_gio_hang){
+  $sql ="UPDATE gio_hang SET so_luong= so_luong + 1  WHERE id_gio_hang=?";
+  pdo_execute($sql,$id_gio_hang);
+}
+function giam_so_luong_gio_hang($id_gio_hang){
+  $sql ="UPDATE gio_hang SET so_luong= so_luong -1  WHERE id_gio_hang=?";
+  pdo_execute($sql,$id_gio_hang);
+}
 ?>

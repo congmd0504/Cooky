@@ -37,17 +37,10 @@
                     <label class="label" for="dia_chi">Địa chỉ:</label>
                     <input class="input" type="text" name="dia_chi" id="dia_chi" placeholder="Địa chỉ chi tiết" value="<?= $dia_chi ?>" />
                 </div>
-                <div style="margin-left: 150px;">
-                    <small class="message-error"><?= isset($error['dia_chi']) ? $error['dia_chi'] : "" ?></small>
-                </div>
                 <div class="row">
                     <label class="label" for="phone">Điện thoại:</label>
                     <input class="input" type="text" name="phone" id="phone" placeholder="Số điện thoại" value="<?= $phone ?>" />
                 </div>
-                <div style="margin-left: 150px;">
-                    <small class="message-error"><?= isset($error['phone']) ? $error['phone'] : "" ?></small>
-                </div>
-
                 <div class="form-group-button">
                     <input name="submit" class="btn btn-info" type="submit" value="Cập nhật" />
                     <a class="btn btn-danger" href="index.php?act=form_account">Quay lại</a>

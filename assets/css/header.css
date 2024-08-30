@@ -73,7 +73,7 @@
     top: 40px;
     right: -10px;
     display: none;
-    width: 180px;
+    width: 230px;
     background-color: #fff;
     font-weight: 600;
     font-size: 16px;
@@ -82,7 +82,7 @@
 }
 .phone-hover::before {
     content: "";
-    width: 270px;
+    width: 280px;
     height: 30px;
     background-color: transparent;
     position: absolute;

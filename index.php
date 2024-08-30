@@ -113,22 +113,28 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $phone = $_POST['phone'];
                 // Validate username
                 if (empty($ho_ten)) {
+                    $error[]="sai";
                     displayToastrMessageError("Tên người dùng không được để trống");
                 }
                 // Validate email
                 if (empty($email)) {
+                    $error[]="sai";
                     displayToastrMessageError("Email không được để trống");
                 } else if (!preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/', $email)) {
+                    $error[]="sai";
                     displayToastrMessageError(" Vui lòng nhập lại, email không đúng định dạng");
                 }
                 // Validate address
                 if (empty($dia_chi)) {
+                    $error[]="sai";
                     displayToastrMessageError(" Địa chỉ người dùng không được để trống");
                 }
                 // Validate phone
                 if (empty($phone)) {
+                    $error[]="sai";
                     displayToastrMessageError("Số điện thoại không được để trống");
                 } else if (!preg_match('/(84|0[3|5|7|8|9])+([0-9]{8})\b/', $phone)) {
+                    $error[]="sai";
                     displayToastrMessageError("Vui lòng nhập lại, số điện thoại không đúng định dạng");
                 }
                 if (!$error) {
@@ -221,7 +227,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 } else {
                     extract($check_id);
                     $so_luong = 1;
-                    insert_gio_hang($id_khach_hang, $id_chi_tiet_san_pham, $so_luong);
+                    gio_hang_insert_and_update($id_khach_hang, $id_chi_tiet_san_pham, $so_luong);
                     $thongbao = "success";
                     header("Location: index.php?act=product-detail&id=$id_san_pham&thongbao=" . urlencode($thongbao));
                 }
@@ -229,8 +235,9 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
         case 'view-cart':
             if (!isset($_SESSION['login'])) {
-                $thongbao = "Bạn cần đăng nhập để sử dụng chức năng giỏ hàng!";
+                displayToastrMessageError("Bạn cần đăng nhập để sử dụng chức năng giỏ hàng!");
                 include_once 'view/auth/login.php';
+                break;
             } else
                 $id_khach_hang = $_SESSION['login']['id_khach_hang'];
             $gio_hang_all = select_gio_hang_by_id($id_khach_hang);
@@ -248,6 +255,18 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             header('Location: index.php?act=view-cart');
             break;
+        case 'fix-cart':
+            if(isset($_POST['fix_tang']) && $_POST['fix_tang']){
+                $id_gio_hang = $_POST['id_gio_hang'];
+                tang_so_luong_gio_hang($id_gio_hang);
+            }
+            if(isset($_POST['fix_giam']) && $_POST['fix_giam']){
+                $id_gio_hang = $_POST['id_gio_hang'];
+                giam_so_luong_gio_hang($id_gio_hang);
+            }
+            header('Location: index.php?act=view-cart');
+            break;
+            
     }
 } else {
     include_once("./view/homepage.php");
