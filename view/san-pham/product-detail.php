@@ -139,8 +139,8 @@ $formatCurrencyPrice = formatCurrency($price);
                        
                         <div class="brand-info-box">
                             <div class="brand-info-item">
-                                <div class="brand-into-title">Định lượng</div>
-                                <div class="brand-into-content"><?= $weight ?>g</div>
+                                <div class="brand-into-title">Danh mục</div>
+                                <div class="brand-into-content"><?= $categoryDetail['ten_danh_muc'] ?></div>
                             </div>
                             <div class="brand-info-item" style="position: relative;">
                                 <div class="brand-into-title">Thương hiệu</div>

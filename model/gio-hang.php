@@ -47,4 +47,8 @@ function giam_so_luong_gio_hang($id_gio_hang){
   $sql ="UPDATE gio_hang SET so_luong= so_luong -1  WHERE id_gio_hang=?";
   pdo_execute($sql,$id_gio_hang);
 }
+function sum_so_luong_gio_hang($id_khach_hang){
+  $sql ="SELECT SUM(so_luong) FROM gio_hang WHERE id_khach_hang =?";
+  return pdo_query_one($sql,$id_khach_hang);
+}
 ?>
