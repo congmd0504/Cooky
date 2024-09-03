@@ -9,7 +9,9 @@ include_once('./model/do-an-them.php');
 include_once('./model/detail-san-pham.php');
 include_once('./model/binh-luan.php');
 include_once('./model/gio-hang.php');
-include_once('./model/tai-khoan.php');
+include_once('./model/don-hang.php');
+include_once('./model/giam-gia.php');
+include_once('./model/chi-tiet-don-hang.php');
 include_once("./view/header-site.php");
 $listdanhmuc = loadall_danhmuc_trangchu();
 $listdanhmuc_all = loai_select_all();
@@ -266,7 +268,44 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             header('Location: index.php?act=view-cart');
             break;
-            
+        case 'checkout':
+            $id_khach_hang = $_SESSION['login']['id_khach_hang'];
+            if(isset($_POST['agree-to-order']) && $_POST['agree-to-order']){
+                $phone =$_POST['phone'];
+                $dia_chi_giao =$_POST['dia_chi_giao'];
+                $ngay_tao = date('Y-m-d');
+                $payment_method = $_POST['payment_method'];
+                $note=$_POST['note'];
+                $id_trang_thai_don = "";
+               
+                $id_don_hang=  insert_don_hang($id_khach_hang,$phone,$dia_chi_giao,$id_trang_thai_don,$ngay_tao,$payment_method,$note);
+                $id_chi_tiet_san_pham = $_POST['id_chi_tiet_san_pham'];
+                $so_luong =$_POST['so_luong'];
+                $tong_gia_tien = $_POST['tong_gia_tien'];
+                    
+                if (isset($_POST['id_chi_tiet_san_pham']) && isset($_POST['so_luong'])) {
+                    $id_chi_tiet_san_pham_list = $_POST['id_chi_tiet_san_pham'];
+                    $so_luong_list = $_POST['so_luong'];
+                    $tong_gia_tien = $_POST['tong_gia_tien'];
+        
+                    foreach ($id_chi_tiet_san_pham_list as $index => $id_chi_tiet_san_pham) {
+                        $so_luong = $so_luong_list[$index];
+                        $tong_gia_tien = $_POST['tong_gia_tien']; // Tổng giá tiền tính ở đây
+                        
+                        // Thêm chi tiết đơn hàng
+                        insert_chi_tiet_don_hang($id_don_hang, $id_chi_tiet_san_pham, $so_luong, $tong_gia_tien);
+                    }
+                    if ($payment_method ==2 ){
+                        $gio_hang_all = select_gio_hang_by_id($id_khach_hang);
+                        include_once('./payment.php');
+                        break;
+                    }
+            }
+                
+            }
+            $gio_hang_all = select_gio_hang_by_id($id_khach_hang);
+            include ('./view/cart/checkout.php');
+            break; 
     }
 } else {
     include_once("./view/homepage.php");
