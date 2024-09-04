@@ -5,7 +5,7 @@ $ma_giam_gia = select_giam_gia();
     <div class="page-wrapper">
         <div class="home-page-container">
             <h1 class="title-user">Thanh toán</h1>
-            <form action="index.php?act=checkout" method="POST">
+            <form action="index.php?act=complete" method="POST">
                 <div class="checkout-page">
                     <div class="form-container checkout-page-form">
                         <h2 class="title-user">Thông tin giao hàng</h2>

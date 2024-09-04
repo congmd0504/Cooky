@@ -5,7 +5,7 @@ function insert_giam_gia($code,$giam_gia,$so_luong,$ngay_het_han){
     pdo_execute($sql,$code,$giam_gia,$so_luong,$ngay_het_han);
 }
 function select_giam_gia(){
-    $sql = "SELECT * FROM ma_giam_gia";
+    $sql = "SELECT * FROM ma_giam_gia ORDER BY id_ma_giam_gia DESC";
     return pdo_query($sql);
 }
 function delete_giam_gia($id_ma_giam_gia){
