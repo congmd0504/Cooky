@@ -78,7 +78,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 } else {
                     $user_exists = kiem_tra_nguoi_dung_ton_tai($ten_dang_nhap);
                     if ($user_exists) {
-                    displayToastrMessageError("Tên người dùng đã tồn tại!");
+                        displayToastrMessageError("Tên người dùng đã tồn tại!");
                     }
                 }
                 if (empty($mat_khau) || strlen($mat_khau) < 6) {
@@ -115,28 +115,28 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $phone = $_POST['phone'];
                 // Validate username
                 if (empty($ho_ten)) {
-                    $error[]="sai";
+                    $error[] = "sai";
                     displayToastrMessageError("Tên người dùng không được để trống");
                 }
                 // Validate email
                 if (empty($email)) {
-                    $error[]="sai";
+                    $error[] = "sai";
                     displayToastrMessageError("Email không được để trống");
                 } else if (!preg_match('/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/', $email)) {
-                    $error[]="sai";
+                    $error[] = "sai";
                     displayToastrMessageError(" Vui lòng nhập lại, email không đúng định dạng");
                 }
                 // Validate address
                 if (empty($dia_chi)) {
-                    $error[]="sai";
+                    $error[] = "sai";
                     displayToastrMessageError(" Địa chỉ người dùng không được để trống");
                 }
                 // Validate phone
                 if (empty($phone)) {
-                    $error[]="sai";
+                    $error[] = "sai";
                     displayToastrMessageError("Số điện thoại không được để trống");
                 } else if (!preg_match('/(84|0[3|5|7|8|9])+([0-9]{8})\b/', $phone)) {
-                    $error[]="sai";
+                    $error[] = "sai";
                     displayToastrMessageError("Vui lòng nhập lại, số điện thoại không đúng định dạng");
                 }
                 if (!$error) {
@@ -252,17 +252,17 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 delete_gio_hang_by_id($id_chi_tiet_san_pham);
             } else {
                 // Delete all cart
-                $id_khach_hang =$_SESSION['login']['id_khach_hang'];
+                $id_khach_hang = $_SESSION['login']['id_khach_hang'];
                 delete_gio_hang_all($id_khach_hang);
             }
             header('Location: index.php?act=view-cart');
             break;
         case 'fix-cart':
-            if(isset($_POST['fix_tang']) && $_POST['fix_tang']){
+            if (isset($_POST['fix_tang']) && $_POST['fix_tang']) {
                 $id_gio_hang = $_POST['id_gio_hang'];
                 tang_so_luong_gio_hang($id_gio_hang);
             }
-            if(isset($_POST['fix_giam']) && $_POST['fix_giam']){
+            if (isset($_POST['fix_giam']) && $_POST['fix_giam']) {
                 $id_gio_hang = $_POST['id_gio_hang'];
                 giam_so_luong_gio_hang($id_gio_hang);
             }
@@ -270,42 +270,44 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
         case 'checkout':
             $id_khach_hang = $_SESSION['login']['id_khach_hang'];
-            if(isset($_POST['agree-to-order']) && $_POST['agree-to-order']){
-                $phone =$_POST['phone'];
-                $dia_chi_giao =$_POST['dia_chi_giao'];
+            $gio_hang_all = select_gio_hang_by_id($id_khach_hang);
+            include('./view/cart/checkout.php');
+            break;
+        case 'complete':
+            $id_khach_hang = $_SESSION['login']['id_khach_hang'];
+            if (isset($_POST['agree-to-order']) && $_POST['agree-to-order']) {
+                $phone = $_POST['phone'];
+                $dia_chi_giao = $_POST['dia_chi_giao'];
                 $ngay_tao = date('Y-m-d');
                 $payment_method = $_POST['payment_method'];
-                $note=$_POST['note'];
+                $note = $_POST['note'];
                 $id_trang_thai_don = "";
-               
-                $id_don_hang=  insert_don_hang($id_khach_hang,$phone,$dia_chi_giao,$id_trang_thai_don,$ngay_tao,$payment_method,$note);
+
+                $id_don_hang = insert_don_hang($id_khach_hang, $phone, $dia_chi_giao, $id_trang_thai_don, $ngay_tao, $payment_method, $note);
                 $id_chi_tiet_san_pham = $_POST['id_chi_tiet_san_pham'];
-                $so_luong =$_POST['so_luong'];
+                $so_luong = $_POST['so_luong'];
                 $tong_gia_tien = $_POST['tong_gia_tien'];
-                    
+
                 if (isset($_POST['id_chi_tiet_san_pham']) && isset($_POST['so_luong'])) {
                     $id_chi_tiet_san_pham_list = $_POST['id_chi_tiet_san_pham'];
                     $so_luong_list = $_POST['so_luong'];
                     $tong_gia_tien = $_POST['tong_gia_tien'];
-        
+
                     foreach ($id_chi_tiet_san_pham_list as $index => $id_chi_tiet_san_pham) {
                         $so_luong = $so_luong_list[$index];
                         $tong_gia_tien = $_POST['tong_gia_tien']; // Tổng giá tiền tính ở đây
-                        
                         // Thêm chi tiết đơn hàng
                         insert_chi_tiet_don_hang($id_don_hang, $id_chi_tiet_san_pham, $so_luong, $tong_gia_tien);
                     }
-                    if ($payment_method ==2 ){
-                        $gio_hang_all = select_gio_hang_by_id($id_khach_hang);
+                    if ($payment_method == 2) {
                         include_once('./payment.php');
                         break;
                     }
+                }
             }
-                
-            }
-            $gio_hang_all = select_gio_hang_by_id($id_khach_hang);
-            include ('./view/cart/checkout.php');
-            break; 
+            include('./view/cart/complete.php');
+            break;
+
     }
 } else {
     include_once("./view/homepage.php");
