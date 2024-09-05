@@ -1,5 +1,7 @@
 <?php
-$id_don_hang=$_GET['id_don_hang'];
+   if(isset($_GET['id_don_hang'])){
+    $id_don_hang=$_GET['id_don_hang'];
+   }
    $don_hang = select_don_hang($id_don_hang);
    $chi_tiet_don_hang = select_chi_tiet_don_hang($id_don_hang);
    $tong_gia_tien = tong_tien($id_don_hang);

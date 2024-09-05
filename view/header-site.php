@@ -35,7 +35,7 @@ session_start();
 
 <body>
     <div class="app">
-        <header class="header">
+        <header class="header ">
             <div class="navigation-bar">
                 <div class="me-3">
                     <a href="./index.php">

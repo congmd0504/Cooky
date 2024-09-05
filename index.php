@@ -281,8 +281,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $ngay_tao = date('Y-m-d');
                 $payment_method = $_POST['payment_method'];
                 $note = $_POST['note'];
-                $id_trang_thai_don = "";
-
+                $id_trang_thai_don = 0;
                 $id_don_hang = insert_don_hang($id_khach_hang, $phone, $dia_chi_giao, $id_trang_thai_don, $ngay_tao, $payment_method, $note);
                 $id_chi_tiet_san_pham = $_POST['id_chi_tiet_san_pham'];
                 $so_luong = $_POST['so_luong'];
@@ -306,6 +305,20 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 }
             }
             include('./view/cart/complete.php');
+            break;
+        case 'order-history':
+            include ('./view/auth/order-history.php');
+            break;
+        case 'detail-don-hang':
+            include ('./view/auth/detail-don-hang.php');
+            break;
+        case 'huy-don-hang':
+            if(isset($_GET['id-don-hang']) && $_GET['id-don-hang']){
+                $id_don_hang= $_GET['id-don-hang'];
+                huy_don_hang($id_don_hang);
+                displayToastrMessageSuccess("Bạn đã hủy thành công!");
+            }
+            include ('./view/auth/order-history.php');
             break;
 
     }
