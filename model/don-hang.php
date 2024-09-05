@@ -15,4 +15,12 @@ function select_don_hang($id_don_hang){
     $sql = "SELECT don_hang.* ,user.ho_ten  FROM don_hang JOIN user ON user.id_khach_hang = don_hang.id_khach_hang WHERE id_don_hang = ?";
     return pdo_query_one($sql,$id_don_hang);
 }
+function select_don_hang_by_id($id_khach_hang){
+    $sql = "SELECT * FROM don_hang WHERE id_khach_hang = ?";
+    return pdo_query($sql,$id_khach_hang);
+}
+function huy_don_hang($id_don_hang){
+    $sql= "UPDATE don_hang SET id_trang_thai_don = 6 WHERE id_don_hang = ?";
+    pdo_execute($sql,$id_don_hang);
+}
 ?>

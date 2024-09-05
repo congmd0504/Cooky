@@ -5,7 +5,7 @@
 
         <?php endif; ?>
 <div class="footer">
-<footer class=" container  text-center text-lg-start text-white">
+<footer class=" container text-center text-lg-start text-white">
 
     <div class="row ">
 
