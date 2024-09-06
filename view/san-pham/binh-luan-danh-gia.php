@@ -1,6 +1,6 @@
 <?php 
-
 $list_binh_luan = select_binh_luan($_GET['id']);
+
 ?>
 <div class="border border-secondary-subtle p-4">
   <nav>
@@ -43,9 +43,25 @@ $list_binh_luan = select_binh_luan($_GET['id']);
         <div class="ms-2">
           <span class="fw-semibold"><?=$binh_luan['ho_ten']?></span><br>
           <p><?=$binh_luan['noi_dung']?></p>
-          <p class="text-muted" style="font-size:10px; margin-top:-6px;"><?=$binh_luan['ngay_binh_luan']?></p>
-        </div>
+          <p class="text-muted" style="font-size:10px; margin-top:-6px;"><?=$binh_luan['ngay_binh_luan']?></p> 
+        </div> 
       </div>
+      <?php 
+      $list_reply = select_reply_by_id_binh_luan ($binh_luan['id_binh_luan']);
+      ?>
+      <?php if(!empty($list_reply)) : ?>
+        <?php foreach($list_reply as $reply) :?>
+          <?php $logo_reply = $imagePath.$reply['hinh_anh'] ?>
+      <div class="d-flex ms-5 mt-1">
+        <img src="<?=$logo_reply?>" alt="<?=$reply['ho_ten']?>" class="rounded-circle" height="35px">
+        <div class="ms-2">
+          <span class="fw-semibold"><?=$reply['ho_ten']?></span><br>
+          <p><?=$reply['content']?></p>
+          <p class="text-muted" style="font-size:10px; margin-top:-6px;"><?=$reply['ngay_reply']?></p> 
+        </div> 
+      </div>
+      <?php endforeach; ?>
+      <?php endif;?>
       <hr class="text-secondary" style="margin-top:3px;">
       <?php endforeach; ?>
     </div>
