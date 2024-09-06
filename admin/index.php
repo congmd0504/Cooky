@@ -336,6 +336,42 @@ if (isset($_GET['act']) && $_GET['act']) {
         case 'detail-history-mh':
             include ('./view/user/detail-history-mh.php');
             break;
+        case 'reply-comment':
+            if(isset($_POST['reply']) && $_POST['reply']){
+                $id_binh_luan = $_POST['id_binh_luan'];
+                $content = $_POST['content'];
+                $id_khach_hang = $_POST['id_khach_hang'];
+                $ngay_reply= date('Y-m-d');
+                insert_reply_binh_luan($id_binh_luan,$content,$id_khach_hang,$ngay_reply);
+                showSuccessToast("Trả lời thành công!");
+                include ('./view/binh-luan/list-reply.php');
+                break;
+            }
+            include ('./view/binh-luan/reply.php');
+            break;
+        case 'list-reply':
+            include ('./view/binh-luan/list-reply.php');
+            break;
+        case 'delete-reply':
+            if(isset($_GET['id'])){
+                $id_reply_comment = $_GET['id'];
+                delete_reply_binh_luan($id_reply_comment);
+                showSuccessToast("Xóa thành công!");
+            }
+            include ('./view/binh-luan/list-reply.php');
+            break;
+        case 'update-reply':
+            if( isset($_POST['reply']) && $_POST['reply']){
+                $id_reply_comment = $_POST['id_reply_comment'];
+                $content = $_POST['content'];
+                $ngay_reply= date ('Y-m-d');
+                update_binh_luan_by_id($id_reply_comment,$content,$ngay_reply);
+                showSuccessToast("Cập nhập thành công !");
+                include ('./view/binh-luan/list-reply.php');
+                break;
+            }
+            include ('./view/binh-luan/update-reply.php');
+            break;
     }
 }
 

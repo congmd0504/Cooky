@@ -1,7 +1,7 @@
 <?php 
 $imagePath ="./uploads/";
-$weight =200;
-$discount = 20000;
+// $weight =200;
+// $discount = 20000;
 function displayToastrMessageSuccess($message_success)
 {
     echo '<script>';

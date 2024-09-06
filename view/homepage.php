@@ -113,9 +113,6 @@
                             $linkProduct = "index.php?act=product-detail&id=" . $id_san_pham;
                             $showImage = !empty($hinh_anh) ? $imagePath . $hinh_anh : 'https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg';
                             $formatCurrencyPrice = formatCurrency($price);
-                            $formatCurrencyDiscount = formatCurrency($discount);
-
-                            $displayPrice = ($discount == 0) ? $formatCurrencyPrice : $formatCurrencyDiscount;
                             echo '
                                 <div class="product-basic-info">
                                     <a class="link-absolute" title="' . $ten_san_pham . '" href="' . $linkProduct . '"></a>
