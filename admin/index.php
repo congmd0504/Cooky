@@ -16,6 +16,9 @@ include_once("../model/user.php");
 include_once("../model/roles.php");
 include_once("../model/binh-luan.php");
 include_once("../model/giam-gia.php");
+include_once("../model/don-hang.php");
+include_once("../model/chi-tiet-don-hang.php");
+include_once("../model/trang-thai-don.php");
 include_once("./view/header.php");
 include_once("./view/sidebar.php");
 if (isset($_GET['act']) && $_GET['act']) {
@@ -305,6 +308,33 @@ if (isset($_GET['act']) && $_GET['act']) {
                 }
             }
             include ('./view/giam-gia/update.php');
+            break;
+        case 'list-order':
+            include ('./view/don-hang/list.php');
+            break;
+        case 'list-detail-order':
+            include ('./view/don-hang/detail.php');
+            break;
+        case 'update-order':
+            include ('./view/don-hang/update.php');
+            break;
+        case 'edit-order':
+            if(isset($_GET['id_don_hang']) && $_GET['id_don_hang']){
+                $id_don_hang= $_GET['id_don_hang'];
+                $id_trang_thai_don = $_POST['id_trang_thai_don'];
+            update_don_hang($id_don_hang,$id_trang_thai_don);
+            showSuccessToast("Cập nhập trạng thái thành công!");
+            include ('./view/don-hang/list.php');
+            }
+            break;
+        case 'order-confirm':
+            include ('./view/don-hang/list-confirm.php');
+            break;
+        case 'history-mh':
+            include ('./view/user/history-mh.php');
+            break;
+        case 'detail-history-mh':
+            include ('./view/user/detail-history-mh.php');
             break;
     }
 }

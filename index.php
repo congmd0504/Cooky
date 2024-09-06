@@ -176,6 +176,8 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             break;
         case 'product-detail':
+            $id_san_pham = $_GET['id'];
+            update_luot_xem($id_san_pham);
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id_san_pham = $_GET['id'];
                 $productDetail = load_san_pham_id($id_san_pham);

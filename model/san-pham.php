@@ -68,4 +68,8 @@ function product_search_by_keyword($keyword){
     // die;
     return pdo_query($sql);
 }
+function update_luot_xem($id_san_pham){
+    $sql = "UPDATE san_pham SET luot_xem = luot_xem + 1 WHERE id_san_pham =?";
+    pdo_execute($sql,$id_san_pham);
+}
 ?>
