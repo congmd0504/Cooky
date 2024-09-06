@@ -37,7 +37,6 @@
                           <ul class="sub-menu" aria-expanded="false">
                               <li><a href="?act=order-confirm">Đơn hàng cần xác nhận</a></li>
                               <li><a href="?act=list-order">Danh sách đơn hàng</a></li>
-                              <li><a href="?act=list-order-view">Danh sách đơn hàng khách hàng ghé thăm</a></li>
                           </ul>
                       </li>
                       <?php 
