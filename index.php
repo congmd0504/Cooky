@@ -12,6 +12,7 @@ include_once('./model/gio-hang.php');
 include_once('./model/don-hang.php');
 include_once('./model/giam-gia.php');
 include_once('./model/chi-tiet-don-hang.php');
+include_once('./model/danh-gia.php');
 include_once("./view/header-site.php");
 $listdanhmuc = loadall_danhmuc_trangchu();
 $listdanhmuc_all = loai_select_all();
@@ -309,18 +310,30 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             include('./view/cart/complete.php');
             break;
         case 'order-history':
-            include ('./view/auth/order-history.php');
+            include('./view/auth/order-history.php');
             break;
         case 'detail-don-hang':
-            include ('./view/auth/detail-don-hang.php');
+            include('./view/auth/detail-don-hang.php');
             break;
         case 'huy-don-hang':
-            if(isset($_GET['id-don-hang']) && $_GET['id-don-hang']){
-                $id_don_hang= $_GET['id-don-hang'];
+            if (isset($_GET['id-don-hang']) && $_GET['id-don-hang']) {
+                $id_don_hang = $_GET['id-don-hang'];
                 huy_don_hang($id_don_hang);
                 displayToastrMessageSuccess("Bạn đã hủy thành công!");
             }
-            include ('./view/auth/order-history.php');
+            include('./view/auth/order-history.php');
+            break;
+        case 'feedback-order':
+            if(isset($_POST['submit_danh_gia']) && $_POST['submit_danh_gia']){
+                $id_khach_hang = $_POST['id_khach_hang'];
+                $id_san_pham =$_POST['id_san_pham'];
+                $danh_gia= $_POST['danh_gia'];
+                $noi_dung = $_POST['noi_dung'];
+                $ngay_danh_gia = date('Y-m-d');
+                insert_danh_gia($id_khach_hang,$id_san_pham,$danh_gia,$noi_dung,$ngay_danh_gia);
+                displayToastrMessageSuccess("Bạn đã đánh giá thành công!");
+            }
+            include('./view/auth/feedback-order.php');
             break;
 
     }
