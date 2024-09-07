@@ -54,7 +54,8 @@ $tong_gia_tien = tong_tien($id_don_hang);
                 }
                 ?>
                 <?php if ($kiem_tra): ?>
-                    <a onclick="return confirm('Bạn có muốn hủy đơn hàng này không ?')" href="index.php?act=huy-don-hang&id-don-hang=<?= $id_don_hang ?>" class="btn btn-danger">Hủy đơn
+                    <a onclick="return confirm('Bạn có muốn hủy đơn hàng này không ?')"
+                        href="index.php?act=huy-don-hang&id-don-hang=<?= $id_don_hang ?>" class="btn btn-danger">Hủy đơn
                         hàng</a>
                 <?php endif; ?>
             </div>
@@ -78,9 +79,15 @@ $tong_gia_tien = tong_tien($id_don_hang);
                             <hr class="mt-1">
                         </div>
                     </div>
+                    <?php if ($id_trang_thai_don == 5): ?>
+                        <div class="d-flex justify-content-end mt-2"><a
+                                href="?act=feedback-order&id=<?php echo $id_chi_tiet_don_hang ?>"
+                                class="btn btn-outline-danger p-1 ">Viết đánh giá</a>
+                        </div>
+                    <?php endif ?>
                 </div>
             <?php endforeach; ?>
-            <div class="mt-2 text-end">
+            <div class="mt-2">
                 <span class="fw-bold fs-5">Giá tiền thanh toán: <span
                         class="text-danger"><?= formatCurrency($tong_gia_tien) ?></span></span>
             </div>

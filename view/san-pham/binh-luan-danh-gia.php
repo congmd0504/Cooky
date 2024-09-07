@@ -43,7 +43,7 @@ $list_binh_luan = select_binh_luan($_GET['id']);
         <div class="ms-2">
           <span class="fw-semibold"><?=$binh_luan['ho_ten']?></span><br>
           <p><?=$binh_luan['noi_dung']?></p>
-          <p class="text-muted" style="font-size:10px; margin-top:-6px;"><?=$binh_luan['ngay_binh_luan']?></p> 
+          <p class="text-muted" style="font-size:10px; margin-top:-10px;"><?=$binh_luan['ngay_binh_luan']?></p> 
         </div> 
       </div>
       <?php 
@@ -57,7 +57,7 @@ $list_binh_luan = select_binh_luan($_GET['id']);
         <div class="ms-2">
           <span class="fw-semibold"><?=$reply['ho_ten']?></span><br>
           <p><?=$reply['content']?></p>
-          <p class="text-muted" style="font-size:10px; margin-top:-6px;"><?=$reply['ngay_reply']?></p> 
+          <p class="text-muted" style="font-size:10px; margin-top:-10px;"><?=$reply['ngay_reply']?></p> 
         </div> 
       </div>
       <?php endforeach; ?>
