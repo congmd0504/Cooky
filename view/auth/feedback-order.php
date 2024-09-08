@@ -3,7 +3,6 @@ $chi_tiet_don_hang = chi_tiet_don_hang_by_id($_GET['id']);
 $image = $imagePath.$chi_tiet_don_hang['hinh_anh'];
 $id_khach_hang= $_SESSION['login']['id_khach_hang'];
 $id_san_pham = $chi_tiet_don_hang['id_san_pham'];
-
 $check_danh_gia = kiem_tra_danh_gia($id_khach_hang,$id_san_pham);
 ?>
 <style>
@@ -66,7 +65,7 @@ $check_danh_gia = kiem_tra_danh_gia($id_khach_hang,$id_san_pham);
     </div>
     <?php else :?>
         <div class="text-center">
-        <h3 class="badge-success">Bạn đã đánh giá sản phẩm này</h3>
+        <span class="badge text-bg-success">Bạn đã đánh giá sản phẩm này</span>
         </div>
     <?php endif;?>
 </div>
