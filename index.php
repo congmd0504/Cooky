@@ -67,10 +67,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $ten_dang_nhap = $_POST['ten_dang_nhap'];
                 $mat_khau = $_POST['mat_khau'];
                 $ho_ten = $_POST['ho_ten'];
-                $thongbao_user = ""; // Khởi tạo thông báo lỗi cho tên người dùng
-                $thongbao_pass = ""; // Khởi tạo thông báo lỗi cho mật khẩu
-                $thongbao_email = ""; // Khởi tạo thông báo lỗi cho mật khẩu
-                $thongbao_ho_ten = "";
                 if (empty($ho_ten)) {
                     displayToastrMessageError("Họ tên không được bỏ trống!");
                 }
@@ -89,8 +85,13 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     displayToastrMessageError("Vui lòng nhập email!");
                 } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     displayToastrMessageError("Email không hợp lệ!");
+                }else {
+                    $email_exists = kiem_tra_email_ton_tai($email);
+                    if ($email_exists) {
+                        displayToastrMessageError("Email đã tồn tại!");
+                    }
                 }
-                if (!empty($ten_dang_nhap) && !empty($mat_khau) && strlen($mat_khau) >= 6 && !empty($email) && !$user_exists) {
+                if (!empty($ten_dang_nhap) && !empty($mat_khau) && strlen($mat_khau) >= 6 && !empty($email) && !$user_exists && ! $email_exists) {
                     insert_tai_khoan($ho_ten, $ten_dang_nhap, $mat_khau, $email);
                     displayToastrMessageSuccess("Đã đăng ký thành công. Vui lòng đăng nhập!");
                 }
@@ -324,18 +325,77 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             include('./view/auth/order-history.php');
             break;
         case 'feedback-order':
-            if(isset($_POST['submit_danh_gia']) && $_POST['submit_danh_gia']){
+            if (isset($_POST['submit_danh_gia']) && $_POST['submit_danh_gia']) {
                 $id_khach_hang = $_POST['id_khach_hang'];
-                $id_san_pham =$_POST['id_san_pham'];
-                $danh_gia= $_POST['danh_gia'];
+                $id_san_pham = $_POST['id_san_pham'];
+                $danh_gia = $_POST['danh_gia'];
                 $noi_dung = $_POST['noi_dung'];
                 $ngay_danh_gia = date('Y-m-d');
-                insert_danh_gia($id_khach_hang,$id_san_pham,$danh_gia,$noi_dung,$ngay_danh_gia);
+                insert_danh_gia($id_khach_hang, $id_san_pham, $danh_gia, $noi_dung, $ngay_danh_gia);
                 displayToastrMessageSuccess("Bạn đã đánh giá thành công!");
             }
             include('./view/auth/feedback-order.php');
             break;
-
+        case 'forgot-password':
+            if (isset($_POST['submit'])) {
+                $email = isset($_POST['email']) ? $_POST['email'] : "";
+                // Nếu không có lỗi
+                if (empty($email)) {
+                    displayToastrMessageError("Vui lòng nhập email!");
+                }
+                if (!empty($email)) {
+                    $email = $_POST['email'];
+                    $resetCode = substr(md5(rand(10000, 99999)), 0, 8); // Tạo mã reset ngẫu nhiên
+                    $emailSent = user_send_reset_password($email, $resetCode);
+                    if ($emailSent) {
+                        // Lưu thông tin trong phiên và chuyển hướng
+                        $_SESSION['email'] = $email;
+                        $_SESSION['reset_code'] = $resetCode;
+                        header('Location: index.php?act=reset-code');
+                        exit();
+                    } else {
+                        displayToastrMessageError("Lỗi gửi email!");
+                    }
+                }
+            }
+            include "./view/auth/forgot-password.php";
+            break;
+        case 'reset-code':
+            if (isset($_POST['submit']) && ($_POST['submit'])) {
+                $code = isset($_POST['resetCode']) ? $_POST['resetCode'] : "";
+                if (empty($code)) {
+                    displayToastrMessageError("* Mã xác nhận không được để trống");
+                } else if ($code != $_SESSION['reset_code']) {
+                    displayToastrMessageWarning("Mã xác nhận không chính xác !");
+                }
+                if (!empty($code) && ($code == $_SESSION['reset_code'])) {
+                    header('Location: index.php?act=reset-password');
+                    exit();
+                }
+            }
+            include "./view/auth/reset-code-form.php";
+            break;
+        case 'reset-password':
+            if (isset($_POST['submit']) && ($_POST['submit'])) {
+                $email = $_SESSION['email'];
+                $mat_khau = $_POST['newPassword'];
+                if (empty($email)) {
+                    displayToastrMessageError("Email không được để trống");
+                }
+                if (empty($mat_khau)) {
+                    displayToastrMessageError("Mật khẩu không được để trống");
+                }
+                if(!empty($email) && !empty($mat_khau)){
+                    update_pass($email, $mat_khau);
+                    unset($_SESSION['email']);
+                    unset($_SESSION['reset_code']);
+                    displayToastrMessageSuccess("Thay mật khẩu thành công!");
+                    include('./view/auth/login.php');
+                    break;
+                }
+            }
+            include "view/auth/reset-password-form.php";
+            break;
     }
 } else {
     include_once("./view/homepage.php");

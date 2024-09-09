@@ -20,6 +20,7 @@ include_once("../model/don-hang.php");
 include_once("../model/chi-tiet-don-hang.php");
 include_once("../model/trang-thai-don.php");
 include_once("../model/danh-gia.php");
+include_once("../model/thong-ke.php");
 include_once("./view/header.php");
 include_once("./view/sidebar.php");
 if (isset($_GET['act']) && $_GET['act']) {
@@ -311,7 +312,8 @@ if (isset($_GET['act']) && $_GET['act']) {
             if (isset($_GET['id_don_hang']) && $_GET['id_don_hang']) {
                 $id_don_hang = $_GET['id_don_hang'];
                 $id_trang_thai_don = $_POST['id_trang_thai_don'];
-                update_don_hang($id_don_hang, $id_trang_thai_don);
+                $ngay_update = date('Y-m-d');
+                update_don_hang($id_don_hang, $id_trang_thai_don, $ngay_update);
                 showSuccessToast("Cập nhập trạng thái thành công!");
                 include('./view/don-hang/list.php');
             }
@@ -376,9 +378,22 @@ if (isset($_GET['act']) && $_GET['act']) {
             }
             include('./view/danh-gia/detail.php');
             break;
+        case 'thong-ke-dt':
+            include('./view/thong-ke/doanhthu.php');
+            break;
+        case 'thong-ke-slspbd';
+            include('./view/thong-ke/sl-sp-ban-duoc.php');
+            break;
+        case 'thong-ke-ttdh':
+            include('./view/thong-ke/tinh-trang.php');
+            break;
+        case 'thong-ke-bxh':
+            include('./view/thong-ke/bxh.php');
+            break;
     }
+} else {
+    include_once './view/home.php';
 }
 
 include("./view/footer.php");
-
 ?>

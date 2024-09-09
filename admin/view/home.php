@@ -1,6 +1,7 @@
-<?php 
-// $history_dh_home = don_hang_history_home();
-// $thong_ke_home = don_hang_thong_ke_home(); 
+<?php
+$history_dh_home = don_hang_history_home();
+$thong_ke_home = don_hang_thong_ke_home();
+$tong_don = don_hang_count();
 ?>
 <div class="main-content">
     <div class="page-content pt-4">
@@ -30,22 +31,24 @@
                         <div class="card-body">
                             <i class="bx bx-layer float-right m-0 h2 text-muted"></i>
                             <h6 class="text-muted text-uppercase mt-0">Đơn đặt hàng</h6>
-                            <h3 class="mb-3" data-plugin="counterup"><?php 
-                            // echo number_format(don_hang_count()) 
-                            ?>
+                            <h3 class="mb-3" data-plugin="counterup">
+                                <?php
+                                echo $tong_don['don_dat_hang'];
+                                ?>
                             </h3>
 
                         </div>
                     </div>
                 </div>
-                <?php if (isset($_SESSION['login']['id_roles']) && $_SESSION['login']['id_roles'] == 3) : ?>
+                <?php if (isset($_SESSION['login']['id_roles']) && $_SESSION['login']['id_roles'] == 3): ?>
                     <div class="col-xl-3 col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <i class="bx bx-dollar-circle float-right m-0 h2 text-muted"></i>
                                 <h6 class="text-muted text-uppercase mt-0">Doanh thu</h6>
                                 <h3 class="mb-3">
-                                    <span data-plugin="counterup"><?php echo isset($thong_ke_home['total_price']) ? number_format($thong_ke_home['total_price']) : 0 ?></span>
+                                    <span
+                                        data-plugin="counterup"><?php echo isset($thong_ke_home['total_price']) ? number_format($thong_ke_home['total_price']) : 0 ?></span>
                                     VNĐ
                                 </h3>
 
@@ -61,7 +64,11 @@
                                 Giá trung bình
                             </h6>
                             <h3 class="mb-3">
-                                <span data-plugin="counterup"><?php echo isset($thong_ke_home['avg_price']) ? number_format($thong_ke_home['avg_price']) : 0 ?></span>
+                                <?php
+                                $gia_trung_binh = $thong_ke_home['total_price'] / $tong_don['don_dat_hang'];
+                                ?>
+                                <span
+                                    data-plugin="counterup"><?php echo $gia_trung_binh ? number_format($gia_trung_binh) : 0 ?></span>
                                 VNĐ
                             </h3>
 
@@ -77,7 +84,7 @@
                                 Sản phẩm đã bán
                             </h6>
                             <h3 class="mb-3" data-plugin="counterup">
-                                <?php echo isset($thong_ke_home['total_dh']) ? number_format($thong_ke_home['total_dh']) : 0 ?>
+                                <?php echo isset($thong_ke_home['da_ban']) ? number_format($thong_ke_home['da_ban']) : 0 ?>
                             </h3>
                         </div>
                     </div>
@@ -101,21 +108,22 @@
                                             <th class="border-top-0">Khách hàng</th>
                                             <th class="border-top-0">Sản phẩm</th>
                                             <th class="border-top-0">Thể loại</th>
-                                            <th class="border-top-0">Size</th>
-                                            <th class="border-top-0">Màu</th>
+                                            <th class="border-top-0">Khẩu phần</th>
                                             <th class="border-top-0">Số lượng</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($history_dh_home as $value) : ?>
+                                        <?php foreach ($history_dh_home as $value): ?>
                                             <tr>
                                                 <td class="text-truncate"><?php echo $value['ho_ten'] ?></td>
                                                 <td class="text-truncate"><?php echo $value['ten_san_pham'] ?></td>
                                                 <td>
-                                                    <span class="badge badge-soft-success p-2"><?php echo $value['ten_danh_muc'] ?></span>
+                                                    <span
+                                                        class="badge badge-soft-success p-2"><?php echo $value['ten_danh_muc'] ?></span>
                                                 </td>
-                                                <td class="text-truncate"><?php echo $value['size'] ?></td>
-                                                <td class="text-truncate"><?php echo $value['mau'] ?></td>
+                                                <td class="text-truncate">
+                                                    <span><?php echo $value['khau_phan'] ?> & <?php echo $value['do_an_them'] ?></span>
+                                                </td>
                                                 <td class="text-truncate"><?php echo $value['so_luong'] ?></td>
                                             </tr>
                                         <?php endforeach ?>
