@@ -12,7 +12,7 @@
       <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
 
         <div class="rounded-circle bg-white shadow-1-strong d-flex align-items-center justify-content-center mb-4 mx-auto" style="width: 150px; height: 150px;">
-          <img class="rounded-circle" src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1697033902/cooky%20market%20-%20PHP/sri9li0oetshdwb4esa4.jpg" height="150px"  alt=""
+          <img class="rounded-circle" src="./assets/images/logo/sri9li0oetshdwb4esa4.jpg" height="150px"  alt=""
                loading="lazy" />
         </div>
         <h5 class="text-center">CÔNG TY CỔ PHẦN COOKY</h5>
@@ -103,7 +103,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script>
     var swiper = new Swiper(".swiper-container", {

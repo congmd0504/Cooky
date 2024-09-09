@@ -39,11 +39,12 @@ session_start();
             <div class="navigation-bar">
                 <div class="me-3">
                     <a href="./index.php">
-                        <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695381181/cooky%20market%20-%20PHP/cva2ntghjzrlryixcojp.svg" alt="Logo Cooky">
+                        <img src="./assets/images/logo/sri9li0oetshdwb4esa34.jpg" height="40px" alt="Logo Cooky">
                     </a>
                 </div>
                 <div class="search-input">
-                    <img class="icon-search" src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695381877/cooky%20market%20-%20PHP/lieirqymxmairjpyhrwj.svg" alt="Magnifying Glass">
+                    <span class="icon-search" ><i class="fa-solid fa-magnifying-glass"></i></span>
+                   
                     <input tabindex="0" type="text" id="search-input" placeholder="Tìm kiếm sản phẩm...">
                 </div>
                 <div class="user">
@@ -82,13 +83,13 @@ session_start();
                         extract($_SESSION['login']);
                     ?>
                     <div class="hotline action login ">
-                            <a style="text-decoration: none; color:white" href="index.php?act=form_account"><img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695381877/cooky%20market%20-%20PHP/wb5pyhdq2alh6cx8ml82.svg" alt="Login" class="icon"><p><?=$ten_dang_nhap?></p></a>
+                            <a style="text-decoration: none; color:white" href="index.php?act=form_account"><i class="fa-solid fa-user icon"></i><p><?=$ten_dang_nhap?></p></a>
                         </div>
                     <?php 
                 }else{ 
                 ?>
                     <div class="hotline action login">
-                        <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695381877/cooky%20market%20-%20PHP/wb5pyhdq2alh6cx8ml82.svg" alt="Login" class="icon">
+                    <i class="fa-solid fa-user icon"></i>
                         <a class="user-name" href="index.php?act=login">Đăng nhập</a>
                     </div>
                     <?php }?>

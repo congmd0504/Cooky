@@ -1,12 +1,15 @@
 <?php
-   if(isset($_GET['id_don_hang'])){
-    $id_don_hang=$_GET['id_don_hang'];
-   }
-   $don_hang = select_don_hang($id_don_hang);
-   $chi_tiet_don_hang = select_chi_tiet_don_hang($id_don_hang);
-   $tong_gia_tien = tong_tien($id_don_hang);
+if (isset($_GET['id_don_hang'])) {
+    $id_don_hang = $_GET['id_don_hang'];
+}
+$don_hang = select_don_hang($id_don_hang);
+$chi_tiet_don_hang = select_chi_tiet_don_hang($id_don_hang);
+$tong_gia_tien = tong_tien($id_don_hang);
 extract($don_hang);
-
+delete_gio_hang_all($_SESSION['login']['id_khach_hang']);
+if(isset($_GET['status']) && $_GET['status'] == 1){
+    doi_trang_thai_onlline($id_don_hang);
+}
 ?>
 <h1 class="title-user">❤️️ Cảm ơn bạn ❤️️</h1>
 <p class="content-thanks">Cảm ơn quý khách hàng đã lựa chọn <strong class="refuse">CookyFood</strong> để mua sắm đồ ăn!
@@ -67,7 +70,8 @@ extract($don_hang);
             <tr>
                 <td colspan="2" class="text-center"><strong>Tổng đơn</strong></td>
                 <td colspan="2" class="text-center">
-                    <strong><?= formatCurrency($tong_gia_tien['tong_gia_tien']) ?></strong></td>
+                    <strong><?= formatCurrency($tong_gia_tien['tong_gia_tien']) ?></strong>
+                </td>
             </tr>
         </table>
     </div>

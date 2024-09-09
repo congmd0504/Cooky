@@ -2,16 +2,13 @@
 // print_r($chi_tiet_san_pham);
 extract($productDetail);
 // print_r($productDetail);
-$showImage = !empty($hinh_anh) ? $imagePath . $hinh_anh : 'https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg';
+$showImage = !empty($hinh_anh) ? $imagePath . $hinh_anh : './uploads/noavatar.jpg';
 // Làm tròn tiền tiết kiệm
 $saveMoney = round($price / 1000);
 // formatCurrency
 $formatCurrencyPrice = formatCurrency($price);
 // print_r($_SESSION['login']);
 $trung_binh_danh_gia = trung_binh_danh_gia($_GET['id']);
-if (isset($_SESSION['login'])) {
-
-}
 
 ?>
 
@@ -75,7 +72,7 @@ if (isset($_SESSION['login'])) {
                     <div class="extra-info-box">
                         <div class="display-flex btn-cart-box">
                             <form action="index.php?act=add-to-cart" method="POST">
-                                <input type="hidden" name="id_san_pham" value="<?= $id_san_pham ?>" />
+                                <input type="hidden" name="id_san_pham" value="<?= $id_san_pham ?>"/>
                                 <input type="hidden" name="id_khach_hang" value="<?php if (isset($_SESSION['login'])) {
                                     echo $_SESSION['login']['id_khach_hang'];
                                 }
@@ -149,8 +146,7 @@ if (isset($_SESSION['login'])) {
                             </form>
 
                         </div>
-                        <div class="promo-desc-box"><img
-                                src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1696156457/cooky%20market%20-%20PHP/n5zycywefbecp4oj3r7b.svg">
+                        <div class="promo-desc-box"><i class="fa-solid fa-pen-to-square"></i>
                             <div>Ưu đãi áp dụng cho đơn hàng
                                 - Người dùng mới
                                 - Tối thiểu 300k
@@ -205,7 +201,7 @@ if (isset($_SESSION['login'])) {
                         <?php
                         foreach ($productRelated as $product) {
                             $linkProduct = "index.php?act=product-detail&id=" . $product['id_san_pham'];
-                            $showImageRelated = !empty($product['hinh_anh']) ? $imagePath . $product['hinh_anh'] : 'https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg';
+                            $showImageRelated = !empty($product['hinh_anh']) ? $imagePath . $product['hinh_anh'] : './uploads/noavatar.jpg';
 
                             $formatCurrencyPriceRelated = formatCurrency($product['price']);
                             echo '
@@ -250,7 +246,7 @@ if (isset($_GET['thongbao']) && $_GET['thongbao'] == "error") {
 }
 if (isset($_GET['thongbao']) && ($_GET['thongbao'] == "success")) {
     if(isset($_SESSION['login'])){
-    displayToastrMessageSuccess("Thêm vào giỏ hàng thành công!");
+        displayToastrMessageSuccess("Thêm vào giỏ hàng thành công!");
     } 
     else {
         displayToastrMessageWarning("Bạn cần đăng nhập để sử dụng giỏ hàng !");

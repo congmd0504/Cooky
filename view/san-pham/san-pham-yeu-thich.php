@@ -6,7 +6,7 @@
                         <?php
                         foreach ($topViewProductList as $product) {
                             $linkProduct = "index.php?act=product-detail&id=" . $product['id_san_pham'];
-                            $showImage = !empty($product['hinh_anh']) ? $imagePath . $product['hinh_anh'] : 'https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg';
+                            $showImage = !empty($product['hinh_anh']) ? $imagePath . $product['hinh_anh'] : './uploads/noavatar.jpg';
                             $formatCurrencyPrice = formatCurrency($product['price']);
 
                             echo '

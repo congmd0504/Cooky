@@ -20,7 +20,7 @@ $list_danh_gia = danh_gia_select_by_id($_GET['id']);
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
       <?php if (isset($_SESSION['login']) && $_SESSION['login']):
         extract($_SESSION['login']);
-        $logo = !empty($hinh_anh) ? $imagePath . $hinh_anh : 'https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg';
+        $logo = !empty($hinh_anh) ? $imagePath . $hinh_anh : './uploads/noavatar.jpg';
         ?>
         <form action="index.php?act=add-comment" method="post">
           <div class="mt-4 mb-5 d-flex justify-content-between">

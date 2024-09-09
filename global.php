@@ -28,9 +28,9 @@ function formatCurrency($amount)
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendors/PHPMailer/src/Exception.php';
-require 'vendors/PHPMailer/src/PHPMailer.php';
-require 'vendors/PHPMailer/src/SMTP.php';
+require_once 'vendors/PHPMailer/src/Exception.php';
+require_once 'vendors/PHPMailer/src/PHPMailer.php';
+require_once 'vendors/PHPMailer/src/SMTP.php';
 
 // PHPMailer config
 $SMTP_USERNAME = "dinhdcph14290@fpt.edu.vn";
