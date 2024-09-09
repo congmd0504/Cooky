@@ -85,10 +85,7 @@ $target_dir = "../uploads/";
                             </div>
                             <div class="card-footer bg-transparent ">
                                 <div class="float-right m-2">
-                                    <input type="submit" value="Xoá các mục đã chọn" name="delete-dm"
-                                        class="btn btn-outline-danger">
-                                    <a href="?act=listdm" class="btn btn-outline-success">Bỏ chọn tất cả</a>
-                                    <a href="?act=listdm&checkAll" class="btn btn-outline-success">Chọn tất cả</a>
+                                   
                                     <a href="?act=adddm" class="btn btn-success "> <i class="bx bx-plus pr-1"></i>Thêm
                                         danh mục</a>
                                 </div>

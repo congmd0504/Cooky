@@ -109,10 +109,7 @@ $target_dir = "../uploads/";
                             </div>
                             <div class="card-footer bg-transparent ">
                                 <div class="float-right m-2">
-                                    <input type="submit" value="Xoá các mục đã chọn" name="delete-sp"
-                                        class="btn btn-outline-danger">
-                                    <a href="?act=listsp" class="btn btn-outline-success">Bỏ chọn tất cả</a>
-                                    <a href="?act=listsp&checkAll" class="btn btn-outline-success">Chọn tất cả</a>
+                                    
                                     <a href="?act=addsp" class="btn btn-success "> <i class="bx bx-plus pr-1"></i>Thêm
                                         sản phẩm</a>
                                 </div>

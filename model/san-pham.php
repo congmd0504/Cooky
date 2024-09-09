@@ -32,7 +32,7 @@ function san_pham_select_moi_nhat(){
     return pdo_query($sql);
 }
 function san_pham_top(){
-    $sql ="SELECT san_pham.id_san_pham,san_pham.ten_san_pham,san_pham.hinh_anh,san_pham.price,danh_muc.ten_danh_muc FROM san_pham
+    $sql ="SELECT san_pham.id_san_pham,san_pham.ten_san_pham,san_pham.hinh_anh,san_pham.luot_xem,san_pham.price,danh_muc.ten_danh_muc FROM san_pham
     JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc ORDER BY san_pham.luot_xem DESC";
     return pdo_query($sql);
 }
