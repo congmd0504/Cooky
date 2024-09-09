@@ -59,7 +59,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     }
                 }
             }
-            include('./view/auth/login.php');
+            include_once './view/auth/login.php';
             break;
         case 'register':
             if (isset($_POST['dangky']) && ($_POST['dangky'])) {
@@ -100,12 +100,12 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             include "view/auth/register.php";
             break;
         case 'form_account':
-            include("view/auth/form_account.php");
+            include_once 'view/auth/form_account.php';
             break;
         case 'logout':
             session_unset();
             header('Location: index.php');
-            include "view/auth/login.php";
+            include_once 'view/auth/login.php';
             break;
         case 'profile-edit':
             // Validate form profile-edit
@@ -159,7 +159,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     exit;
                 }
             }
-            include("view/auth/profile-edit.php");
+            include_once 'view/auth/profile-edit.php';
             break;
         case 'product':
             if (isset($_GET['category_id'])) {
@@ -167,14 +167,14 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 if ($category_id == 1) {
                     $categoryDetail['ten_danh_muc'] = 'Tất cả';
                     $productList = san_pham_select_all_no_param();
-                    include("view/san-pham/product-list.php");
+                    include_once 'view/san-pham/product-list.php';
                 } elseif ($category_id > 0) {
                     $categoryDetail = loai_select_by_id($category_id);
                     $productList = hang_hoa_select_all("", $category_id);
-                    include("view/san-pham/product-list.php");
+                    include_once './view/san-pham/product-list.php';
                 }
             } else {
-                include("view/homepage.php");
+                include_once 'view/homepage.php';
             }
             break;
         case 'product-detail':
@@ -191,12 +191,12 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     $do_an_them = loadall_do_an_them();
                     $chi_tiet_san_pham = select_chi_tiet_san_pham($id_san_pham);
                     // $list_comment = comment_select_all($id);
-                    include("view/san-pham/product-detail.php");
+                    include_once 'view/san-pham/product-detail.php';
                 } else {
-                    include("view/homepage.php");
+                    include_once 'view/homepage.php';
                 }
             } else {
-                include("view/homepage.php");
+                include_once 'view/homepage.php';
             }
             break;
         case 'add-comment':
@@ -217,14 +217,13 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 include('./view/san-pham/search.php');
                 break;
             }
-            include('./view/homepage.php');
+            include_once './view/homepage.php';
             break;
         case 'add-to-cart':
             if (isset($_POST['add-to-cart']) && $_POST['add-to-cart']) {
                 $id_san_pham = $_POST['id_san_pham'];
                 $id_khau_phan = $_POST['id_khau_phan'];
                 $id_do_an_them = $_POST['id_do_an_them'];
-
                 $check_id = check_id_chi_tiet_san_pham($id_khau_phan, $id_do_an_them);
                 if (empty($check_id)) {
                     $thongbao = "error";
@@ -275,7 +274,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
         case 'checkout':
             $id_khach_hang = $_SESSION['login']['id_khach_hang'];
             $gio_hang_all = select_gio_hang_by_id($id_khach_hang);
-            include('./view/cart/checkout.php');
+            include_once './view/cart/checkout.php';
             break;
         case 'complete':
             $id_khach_hang = $_SESSION['login']['id_khach_hang'];
@@ -306,15 +305,16 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                         include_once('./payment.php');
                         break;
                     }
+                    
                 }
             }
-            include('./view/cart/complete.php');
+            include_once './view/cart/complete.php';
             break;
         case 'order-history':
-            include('./view/auth/order-history.php');
+            include_once './view/auth/order-history.php';
             break;
         case 'detail-don-hang':
-            include('./view/auth/detail-don-hang.php');
+            include_once './view/auth/detail-don-hang.php';
             break;
         case 'huy-don-hang':
             if (isset($_GET['id-don-hang']) && $_GET['id-don-hang']) {
@@ -322,7 +322,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 huy_don_hang($id_don_hang);
                 displayToastrMessageSuccess("Bạn đã hủy thành công!");
             }
-            include('./view/auth/order-history.php');
+            include_once './view/auth/order-history.php';
             break;
         case 'feedback-order':
             if (isset($_POST['submit_danh_gia']) && $_POST['submit_danh_gia']) {
@@ -334,7 +334,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 insert_danh_gia($id_khach_hang, $id_san_pham, $danh_gia, $noi_dung, $ngay_danh_gia);
                 displayToastrMessageSuccess("Bạn đã đánh giá thành công!");
             }
-            include('./view/auth/feedback-order.php');
+            include_once './view/auth/feedback-order.php';
             break;
         case 'forgot-password':
             if (isset($_POST['submit'])) {
@@ -358,7 +358,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     }
                 }
             }
-            include "./view/auth/forgot-password.php";
+            include_once './view/auth/forgot-password.php';
             break;
         case 'reset-code':
             if (isset($_POST['submit']) && ($_POST['submit'])) {
@@ -373,7 +373,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     exit();
                 }
             }
-            include "./view/auth/reset-code-form.php";
+            include_once './view/auth/reset-code-form.php';
             break;
         case 'reset-password':
             if (isset($_POST['submit']) && ($_POST['submit'])) {
@@ -390,15 +390,15 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     unset($_SESSION['email']);
                     unset($_SESSION['reset_code']);
                     displayToastrMessageSuccess("Thay mật khẩu thành công!");
-                    include('./view/auth/login.php');
+                    include_once './view/auth/login.php';
                     break;
                 }
             }
-            include "view/auth/reset-password-form.php";
+            include_once 'view/auth/reset-password-form.php';
             break;
     }
 } else {
-    include_once("./view/homepage.php");
+    include_once './view/homepage.php';
 }
-include_once('view/footer-site.php')
+include_once 'view/footer-site.php';
     ?>

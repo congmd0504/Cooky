@@ -84,7 +84,7 @@
                 </div>
             <?php } else { ?>
                 <div class="no-cart"><img
-                        src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1697029851/jbmsxvpg9wpkte8q5ds9.jpg"
+                        src="./uploads/giohang.jpg"
                         alt="Hình ảnh giỏ hàng trống">
                     <div class="title">🖤 Giỏ hàng của bạn đang trống 🖤</div>
                     <p>Quay lại <a href="index.php">trang chủ</a> để lựa chọn món ăn</p>

@@ -37,7 +37,7 @@ $ma_giam_gia = select_giam_gia();
                             </div>
                             <div class="row">
                                 <textarea class="input" name="note" id="note" cols="30" rows="10"
-                                    placeholder="Ghi chú (Nếu có)"></textarea>
+                                    placeholder="Ghi chú (ví dụ như số nhà, địa chỉ cụ thể..)"></textarea>
                             </div>
                         </form>
                         <h2 class="title-user title-pay-method">Phương thức thanh toán</h2>

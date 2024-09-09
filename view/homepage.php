@@ -42,7 +42,7 @@
                             <?php
                             foreach ($listdanhmuc as $danhmuc) {
                                 extract($danhmuc);
-                                $showImage = !empty($anh_danh_muc) ? "uploads/" . $anh_danh_muc : 'https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg';
+                                $showImage = !empty($anh_danh_muc) ? "uploads/" . $anh_danh_muc : './uploads/noavatar.jpg';
                                 $linkCategory = "index.php?act=product&category_id=" . $id_danh_muc;
                                 echo '<div class="category-item">
                                         <div class="icon">
@@ -68,7 +68,7 @@
                         foreach ($newProductList as $product) {
                             extract($product);
                             $linkProduct = "index.php?act=product-detail&id=" . $id_san_pham;
-                            $showImage = !empty($hinh_anh) ? $imagePath . $hinh_anh : 'https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg';
+                            $showImage = !empty($hinh_anh) ? $imagePath . $hinh_anh : './uploads/noavatar.jpg';
                             $formatCurrencyPrice = formatCurrency($price);
                             echo '
                                 <div class="product-basic-info">
@@ -111,7 +111,7 @@
                         foreach ($topViewProductList as $product) {
                             extract($product);
                             $linkProduct = "index.php?act=product-detail&id=" . $id_san_pham;
-                            $showImage = !empty($hinh_anh) ? $imagePath . $hinh_anh : 'https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg';
+                            $showImage = !empty($hinh_anh) ? $imagePath . $hinh_anh : './uploads/noavatar.jpg';
                             $formatCurrencyPrice = formatCurrency($price);
                             echo '
                                 <div class="product-basic-info">

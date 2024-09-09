@@ -7,7 +7,7 @@
                 extract($_SESSION['login']);
                 // Preview image
                 // echo $hinh_anh;
-                $pathImage = isset($hinh_anh) ? "./uploads/{$hinh_anh}" : "https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg";
+                $pathImage = isset($hinh_anh) ? "./uploads/{$hinh_anh}" : "./uploads/noavatar.jpg";
             }
             ?>
             <form action="index.php?act=profile-edit" class="form" method="POST" enctype="multipart/form-data">

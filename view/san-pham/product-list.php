@@ -11,7 +11,7 @@
                             $selectedCategoryId = isset($_GET['id_danh_muc']) ? $_GET['id_danh_muc'] : null;
                             foreach ($listdanhmuc_all as $danhmuc) {
                                 extract($danhmuc);
-                                $showImage = !empty($anh_danh_muc) ? $imagePath . $anh_danh_muc : 'https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg';
+                                $showImage = !empty($anh_danh_muc) ? $imagePath . $anh_danh_muc : './uploads/noavatar.jpg';
                                 $linkCategory = "index.php?act=product&category_id=" . $id_danh_muc;
                                 $categoryActiveImage = ($id_danh_muc == $selectedCategoryId) ? 'img-fit active' : 'img-fit';
                                 $categoryActiveName = ($id_danh_muc == $selectedCategoryId) ? 'label text-ellipsis-two-lines font-weight-bold' : 'label text-ellipsis-two-lines';
@@ -39,13 +39,13 @@
                         $productListLength = count($productList);
                         if ($productListLength == 0) {
                             echo '<div class="no-data-image">
-                            <img src="https://res.cloudinary.com/do9rcgv5s/image/upload/v1695886519/cooky%20market%20-%20PHP/e2i0tysgmmogurexye75.jpg" width="505px" alt="No data" />
+                            <img src="./uploads/nodata.jpg" width="505px" alt="No data" />
                             </div>';
                         } else {
                             foreach ($productList as $product) {
                                 extract($product);
                                 $linkProduct = "index.php?act=product-detail&id=" . $id_san_pham;
-                                $showImage = !empty($hinh_anh) ? $imagePath . $hinh_anh : 'https://res.cloudinary.com/do9rcgv5s/image/upload/v1695895241/cooky%20market%20-%20PHP/itcq4ouly2zgyzxqwmeh.jpg';
+                                $showImage = !empty($hinh_anh) ? $imagePath . $hinh_anh : './uploads/noavatar.jpg';
                                 $formatCurrencyPrice = formatCurrency($price);
                                 // $formatCurrencyDiscount = formatCurrency($discount);
                                 echo '
