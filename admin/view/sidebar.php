@@ -40,7 +40,7 @@
                           </ul>
                       </li>
                       <?php 
-                    //   if (isset($_SESSION['login']['id_roles']) && $_SESSION['login']['id_roles'] == 3) :
+                      if (isset($_SESSION['login']['id_roles']) && $_SESSION['login']['id_roles'] == 3) :
                        ?>
                           <li>
                               <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="bx bx-user-pin"></i><span>Quản lý khách hàng</span></a>
@@ -51,7 +51,7 @@
                               </ul>
                           </li>
                       <?php
-                    //    endif
+                       endif
                        ?>
                       <li>
                           <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="bx bx-comment-dots"></i><span>Quản lý bình luận</span></a>
@@ -67,7 +67,7 @@
                           </ul>
                       </li>
                       <?php 
-                    //   if (isset($_SESSION['login']['id_roles']) && $_SESSION['login']['id_roles'] == 3) : 
+                      if (isset($_SESSION['login']['id_roles']) && $_SESSION['login']['id_roles'] == 3) : 
                         ?>
                           <li>
                               <a href="javascript: void(0);" class="has-arrow waves-effect"><i class="bx bxs-discount"></i><span>Quản lý mã giảm giá</span></a>
@@ -87,7 +87,7 @@
                               </ul>
                           </li>
                       <?php 
-                    //   endif 
+                      endif 
                       ?>
                       <li class="menu-title">Quản trị</li>
                       <li>

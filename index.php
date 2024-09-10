@@ -22,14 +22,12 @@ $san_pham_yeu_thich = san_pham_yeu_thich();
 if (isset($_GET['act']) && $_GET['act'] != "") {
     $act = $_GET['act'];
     switch ($act) {
-
+        //Đăng nhập
         case 'login':
             $kiem_tra_tai_khoan = "";
             if (isset($_POST['dangnhap']) && $_POST['dangnhap']) {
                 $ten_dang_nhap = $_POST['ten_dang_nhap'];
                 $mat_khau = $_POST['mat_khau'];
-                $thongbao_user = ""; // Khởi tạo thông báo lỗi cho tên người dùng
-                $thongbao_pass = "";
                 if (empty($ten_dang_nhap)) {
                     displayToastrMessageError("Tên người dùng không được bỏ trống!");
                 }
@@ -54,7 +52,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                             header('Location: index.php');
                             exit;
                         }
-
                     } else {
                         displayToastrMessageError("Tên đăng nhập hoặc mật khẩu không chính xác!");
                     }
@@ -62,6 +59,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             include_once './view/auth/login.php';
             break;
+        //Đăng ký
         case 'register':
             if (isset($_POST['dangky']) && ($_POST['dangky'])) {
                 $email = $_POST['email'];
@@ -86,42 +84,40 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     displayToastrMessageError("Vui lòng nhập email!");
                 } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     displayToastrMessageError("Email không hợp lệ!");
-                }else {
+                } else {
                     $email_exists = kiem_tra_email_ton_tai($email);
                     if ($email_exists) {
                         displayToastrMessageError("Email đã tồn tại!");
                     }
                 }
-                if (!empty($ten_dang_nhap) && !empty($mat_khau) && strlen($mat_khau) >= 6 && !empty($email) && !$user_exists && ! $email_exists) {
+                if (!empty($ten_dang_nhap) && !empty($mat_khau) && strlen($mat_khau) >= 6 && !empty($email) && !$user_exists && !$email_exists) {
                     insert_tai_khoan($ho_ten, $ten_dang_nhap, $mat_khau, $email);
                     displayToastrMessageSuccess("Đã đăng ký thành công. Vui lòng đăng nhập!");
                 }
             }
-
-            include "view/auth/register.php";
+            include_once "view/auth/register.php";
             break;
         case 'form_account':
             include_once 'view/auth/form_account.php';
             break;
+        //Đăng xuất
         case 'logout':
             session_unset();
             header('Location: index.php');
             include_once 'view/auth/login.php';
             break;
+        //Chỉnh sửa thông tin user
         case 'profile-edit':
-            // Validate form profile-edit
             $error = [];
             if (isset($_POST['submit']) && ($_POST['submit'])) {
                 $ho_ten = $_POST['ho_ten'];
                 $email = $_POST['email'];
                 $dia_chi = $_POST['dia_chi'];
                 $phone = $_POST['phone'];
-                // Validate username
                 if (empty($ho_ten)) {
                     $error[] = "sai";
                     displayToastrMessageError("Tên người dùng không được để trống");
                 }
-                // Validate email
                 if (empty($email)) {
                     $error[] = "sai";
                     displayToastrMessageError("Email không được để trống");
@@ -129,12 +125,10 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     $error[] = "sai";
                     displayToastrMessageError(" Vui lòng nhập lại, email không đúng định dạng");
                 }
-                // Validate address
                 if (empty($dia_chi)) {
                     $error[] = "sai";
                     displayToastrMessageError(" Địa chỉ người dùng không được để trống");
                 }
-                // Validate phone
                 if (empty($phone)) {
                     $error[] = "sai";
                     displayToastrMessageError("Số điện thoại không được để trống");
@@ -148,7 +142,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     $email = $_POST['email'];
                     $dia_chi = $_POST['dia_chi'];
                     $phone = $_POST['phone'];
-
                     $hinh_anh = $_FILES['hinh_anh']['name'];
                     $target_dir = "./uploads/";
                     $target_file = $target_dir . basename($_FILES["hinh_anh"]["name"]);
@@ -162,6 +155,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             include_once 'view/auth/profile-edit.php';
             break;
+        //SẢN PHẨM
         case 'product':
             if (isset($_GET['category_id'])) {
                 $category_id = $_GET['category_id'];
@@ -178,6 +172,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 include_once 'view/homepage.php';
             }
             break;
+        //Sản phẩm chi tiết
         case 'product-detail':
             $id_san_pham = $_GET['id'];
             update_luot_xem($id_san_pham);
@@ -200,6 +195,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 include_once 'view/homepage.php';
             }
             break;
+        //Bình luận
         case 'add-comment':
             if (isset($_POST['submit']) && $_POST['submit']) {
                 $id_khach_hang = $_POST['id_khach_hang'];
@@ -209,8 +205,8 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 insert_binh_luan($id_khach_hang, $id_san_pham, $noi_dung, $ngay_binh_luan);
                 header("Location: index.php?act=product-detail&id=$id_san_pham");
             }
-            // include_once ('view/san-pham/binh-luan-danh-gia.php');
             break;
+        //Tìm kiếm 
         case 'search':
             if (isset($_GET['keyword']) && $_GET['keyword'] != "") {
                 $key = $_GET['keyword'];
@@ -220,6 +216,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             include_once './view/homepage.php';
             break;
+        //Thêm giỏ hàng
         case 'add-to-cart':
             if (isset($_POST['add-to-cart']) && $_POST['add-to-cart']) {
                 $id_san_pham = $_POST['id_san_pham'];
@@ -239,6 +236,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 }
             }
             break;
+        //View giỏ hàng
         case 'view-cart':
             if (!isset($_SESSION['login'])) {
                 displayToastrMessageError("Bạn cần đăng nhập để sử dụng chức năng giỏ hàng!");
@@ -249,6 +247,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             $gio_hang_all = select_gio_hang_by_id($id_khach_hang);
             include_once 'view/cart/view-cart.php';
             break;
+        //Xoá giỏ hàng
         case 'delete-cart':
             if (isset($_GET['id-cart'])) {
                 // Delete 1 item cart
@@ -261,6 +260,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             header('Location: index.php?act=view-cart');
             break;
+        //Tăng giảm số lượng sản phẩm ở giỏ hàng
         case 'fix-cart':
             if (isset($_POST['fix_tang']) && $_POST['fix_tang']) {
                 $id_gio_hang = $_POST['id_gio_hang'];
@@ -272,11 +272,13 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             header('Location: index.php?act=view-cart');
             break;
+        //Form mua hàng
         case 'checkout':
             $id_khach_hang = $_SESSION['login']['id_khach_hang'];
             $gio_hang_all = select_gio_hang_by_id($id_khach_hang);
             include_once './view/cart/checkout.php';
             break;
+        //Thông tin mua hàng
         case 'complete':
             $id_khach_hang = $_SESSION['login']['id_khach_hang'];
             if (isset($_POST['agree-to-order']) && $_POST['agree-to-order']) {
@@ -286,36 +288,53 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $payment_method = $_POST['payment_method'];
                 $note = $_POST['note'];
                 $id_trang_thai_don = 0;
-                $id_don_hang = insert_don_hang($id_khach_hang, $phone, $dia_chi_giao, $id_trang_thai_don, $ngay_tao, $payment_method, $note);
-                $id_chi_tiet_san_pham = $_POST['id_chi_tiet_san_pham'];
-                $so_luong = $_POST['so_luong'];
-                $tong_gia_tien = $_POST['tong_gia_tien'];
-
-                if (isset($_POST['id_chi_tiet_san_pham']) && isset($_POST['so_luong'])) {
-                    $id_chi_tiet_san_pham_list = $_POST['id_chi_tiet_san_pham'];
-                    $so_luong_list = $_POST['so_luong'];
+                if (empty($phone)) {
+                    displayToastrMessageError("Vui lòng không để trống số điện thoại !");
+                }
+                if (empty($dia_chi_giao)) {
+                    displayToastrMessageError("Vui lòng không để trống địa chỉ giao !");
+                }
+                if (empty($note)) {
+                    displayToastrMessageError("Vui lòng không để trống ghi chú !");
+                }
+                if (!empty($phone) && !empty($dia_chi_giao) && !empty($note)) {
+                    $id_don_hang = insert_don_hang($id_khach_hang, $phone, $dia_chi_giao, $id_trang_thai_don, $ngay_tao, $payment_method, $note);
+                    $id_chi_tiet_san_pham = $_POST['id_chi_tiet_san_pham'];
+                    $so_luong = $_POST['so_luong'];
                     $tong_gia_tien = $_POST['tong_gia_tien'];
+                    if (isset($_POST['id_chi_tiet_san_pham']) && isset($_POST['so_luong'])) {
+                        $id_chi_tiet_san_pham_list = $_POST['id_chi_tiet_san_pham'];
+                        $so_luong_list = $_POST['so_luong'];
+                        $tong_gia_tien = $_POST['tong_gia_tien'];
 
-                    foreach ($id_chi_tiet_san_pham_list as $index => $id_chi_tiet_san_pham) {
-                        $so_luong = $so_luong_list[$index];
-                        $tong_gia_tien = $_POST['tong_gia_tien']; // Tổng giá tiền tính ở đây
-                        // Thêm chi tiết đơn hàng
-                        insert_chi_tiet_don_hang($id_don_hang, $id_chi_tiet_san_pham, $so_luong, $tong_gia_tien);
+                        foreach ($id_chi_tiet_san_pham_list as $index => $id_chi_tiet_san_pham) {
+                            $so_luong = $so_luong_list[$index];
+                            $tong_gia_tien = $_POST['tong_gia_tien'];
+                            insert_chi_tiet_don_hang($id_don_hang, $id_chi_tiet_san_pham, $so_luong, $tong_gia_tien);
+                        }
+                        if ($payment_method == 2) {
+                            include_once('./payment.php');
+                            break;
+                        }
                     }
-                    if ($payment_method == 2) {
-                        include_once('./payment.php');
-                        break;
-                    }
+                } else {
+                    $id_khach_hang = $_SESSION['login']['id_khach_hang'];
+                    $gio_hang_all = select_gio_hang_by_id($id_khach_hang);
+                    include_once './view/cart/checkout.php';
+                    break;
                 }
             }
             include_once './view/cart/complete.php';
             break;
+        //Lịch sử mua hàng
         case 'order-history':
             include_once './view/auth/order-history.php';
             break;
+        //Chi tiết đơn hàng
         case 'detail-don-hang':
             include_once './view/auth/detail-don-hang.php';
             break;
+        //Hủy đơn hàng
         case 'huy-don-hang':
             if (isset($_GET['id-don-hang']) && $_GET['id-don-hang']) {
                 $id_don_hang = $_GET['id-don-hang'];
@@ -324,6 +343,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             include_once './view/auth/order-history.php';
             break;
+        //Đánh giá sản phẩm
         case 'feedback-order':
             if (isset($_POST['submit_danh_gia']) && $_POST['submit_danh_gia']) {
                 $id_khach_hang = $_POST['id_khach_hang'];
@@ -336,6 +356,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             include_once './view/auth/feedback-order.php';
             break;
+        //Lấy lại mật khẩu user
         case 'forgot-password':
             if (isset($_POST['submit'])) {
                 $email = isset($_POST['email']) ? $_POST['email'] : "";
@@ -360,6 +381,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             include_once './view/auth/forgot-password.php';
             break;
+        //So sánh code confirm
         case 'reset-code':
             if (isset($_POST['submit']) && ($_POST['submit'])) {
                 $code = isset($_POST['resetCode']) ? $_POST['resetCode'] : "";
@@ -375,6 +397,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             include_once './view/auth/reset-code-form.php';
             break;
+        //Đặt lại mật khẩu
         case 'reset-password':
             if (isset($_POST['submit']) && ($_POST['submit'])) {
                 $email = $_SESSION['email'];
@@ -385,7 +408,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 if (empty($mat_khau)) {
                     displayToastrMessageError("Mật khẩu không được để trống");
                 }
-                if(!empty($email) && !empty($mat_khau)){
+                if (!empty($email) && !empty($mat_khau)) {
                     update_pass($email, $mat_khau);
                     unset($_SESSION['email']);
                     unset($_SESSION['reset_code']);
@@ -396,6 +419,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             include_once 'view/auth/reset-password-form.php';
             break;
+        //Xử lý thanh toán ở lịch sử
         case 'thanh-toan':
             include_once('./payment.php');
             break;
@@ -404,4 +428,4 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
     include_once './view/homepage.php';
 }
 include_once 'view/footer-site.php';
-    ?>
+?>

@@ -16,7 +16,7 @@ if (isset($_SESSION['login'])) {
                         Thay đổi thông tin tài khoản</a></div>
                 <div class="inter-info"><a href="index.php?act=forgot-password"><i class="fa-solid fa-wrench"></i> Thay
                         đổi mật khẩu</a></div>
-                <?php if ($id_roles == 3 && $id_roles = 2) { ?>
+                <?php if ($id_roles == 3 || $id_roles = 2) { ?>
                     <div class="inter-info"><a href="admin/index.php"><i class="fa-solid fa-key"></i> Trang quản trị</a>
                     </div>
                 <?php } ?>

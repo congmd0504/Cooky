@@ -144,7 +144,7 @@ $tong_don = don_hang_count();
     <footer class="footer">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-6">2023 © Nguyễn Huy Tới.</div>
+                <div class="col-sm-6">2024 © Mai Đức Công.</div>
                 <div class="col-sm-6">
                     <div class="text-sm-right d-none d-sm-block">
                         Quản lý Website

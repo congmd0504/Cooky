@@ -21,19 +21,19 @@ $ma_giam_gia = select_giam_gia();
                             <input type="hidden" name="id" value="<?= $id ?>" />
                             <div class="row">
                                 <input class="input" type="text" name="ho_ten" id="ho_ten" placeholder="Họ tên"
-                                    value="<?= $ho_ten ?>" required />
+                                    value="<?= $ho_ten ?>" />
                             </div>
                             <div class="row">
                                 <input class="input" type="email" name="email" id="email" placeholder="Email"
-                                    value="<?= $email ?>" required />
+                                    value="<?= $email ?>" />
                             </div>
                             <div class="row">
                                 <input class="input" type="text" name="dia_chi_giao" id="dia_chi"
-                                    placeholder="Địa chỉ chi tiết" value="<?= $dia_chi ?>" required />
+                                    placeholder="Địa chỉ chi tiết" value="<?= $dia_chi ?>" />
                             </div>
                             <div class="row">
                                 <input class="input" type="text" name="phone" id="phone" placeholder="Số điện thoại"
-                                    value="<?= $phone ?>" required />
+                                    value="<?= $phone ?>" />
                             </div>
                             <div class="row">
                                 <textarea class="input" name="note" id="note" cols="30" rows="10"
