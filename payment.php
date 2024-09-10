@@ -1,5 +1,10 @@
 <?php
 $gio_hang_all = select_gio_hang_by_id($id_khach_hang);
+if(isset($_GET['id-don-hang'])){
+    $id_don_hang = $_GET['id-don-hang'];
+    $tong_gia = tong_tien($id_don_hang);
+    $tong_gia_tien =  $tong_gia['tong_gia_tien']; 
+}
 $config = [
     "app_id" => 2553,
     "key1" => "PcY4iZIKFCIdgZvA6ueMcMHHUbRLYjPL",

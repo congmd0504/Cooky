@@ -27,13 +27,18 @@ function update_san_pham($id_san_pham, $ten_san_pham, $price, $mo_ta, $hinh_anh,
     }
 }
 function san_pham_select_moi_nhat(){
-    $sql = "SELECT san_pham.id_san_pham,san_pham.ten_san_pham,san_pham.hinh_anh,san_pham.price,danh_muc.ten_danh_muc FROM san_pham
-    JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc ORDER BY san_pham.id_san_pham DESC ";
+    $sql = "SELECT  san_pham.id_san_pham,san_pham.ten_san_pham,san_pham.hinh_anh,san_pham.price,danh_muc.ten_danh_muc FROM san_pham
+    JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc ORDER BY san_pham.id_san_pham DESC LIMIT 12";
     return pdo_query($sql);
 }
-function san_pham_top(){
+
+function san_pham_hot(){
     $sql ="SELECT san_pham.id_san_pham,san_pham.ten_san_pham,san_pham.hinh_anh,san_pham.luot_xem,san_pham.price,danh_muc.ten_danh_muc FROM san_pham
-    JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc ORDER BY san_pham.luot_xem DESC";
+    JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc ORDER BY san_pham.luot_xem DESC LIMIT 12";
+    return pdo_query($sql);
+}
+function san_pham_yeu_thich(){
+    $sql ="SELECT san_pham.ten_san_pham,san_pham.id_san_pham,san_pham.hinh_anh,san_pham.price,danh_muc.ten_danh_muc ,SUM(chi_tiet_don_hang.so_luong) AS so_luot FROM `chi_tiet_don_hang`JOIN chi_tiet_san_pham ON chi_tiet_san_pham.id_chi_tiet_san_pham = chi_tiet_don_hang.id_chi_tiet_san_pham JOIN san_pham ON san_pham.id_san_pham = chi_tiet_san_pham.id_san_pham  JOIN danh_muc ON san_pham.id_danh_muc = danh_muc.id_danh_muc GROUP BY san_pham.ten_san_pham,san_pham.id_san_pham,san_pham.hinh_anh,san_pham.price,danh_muc.ten_danh_muc ORDER BY so_luot DESC LIMIT 12";
     return pdo_query($sql);
 }
 function san_pham_lien_quan($id_san_pham, $id_danh_muc)
@@ -72,4 +77,5 @@ function update_luot_xem($id_san_pham){
     $sql = "UPDATE san_pham SET luot_xem = luot_xem + 1 WHERE id_san_pham =?";
     pdo_execute($sql,$id_san_pham);
 }
+
 ?>

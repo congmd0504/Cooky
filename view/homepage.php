@@ -58,7 +58,92 @@
                     </div>
                 </div>
             </div>
-
+            <!-- Món ăn yêu thích theo lượt xem -->
+            <div class="group-product-content">
+                <div class="title">🔥 Món Hot 🔥</div>
+                <div class="content-product-container">
+                    <div class="promotion-box">
+                        <?php
+                        foreach ($topViewProductList as $product) {
+                            extract($product);
+                            $linkProduct = "index.php?act=product-detail&id=" . $id_san_pham;
+                            $showImage = !empty($hinh_anh) ? $imagePath . $hinh_anh : './uploads/noavatar.jpg';
+                            $formatCurrencyPrice = formatCurrency($price);
+                            echo '
+                                <div class="product-basic-info">
+                                    <a class="link-absolute" title="' . $ten_san_pham . '" href="' . $linkProduct . '"></a>
+                                    <div class="cover-box">
+                                        <div class="promotion-photo">
+                                            <div class="package-default">
+                                                <img src="' . $showImage . '" alt="' . $ten_san_pham . '" loading="lazy" class="img-fit">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="promotion-name two-lines ">' . $ten_san_pham . '</div>
+                                    <div class="product-weight">' . $ten_danh_muc . '</div>
+                                    <div class="d-flex justify-content-end">
+                                        <div class="price-action">
+                                            <div class="d-flex-align-items-baseline">
+                                            <div class="sale-price ">' . $formatCurrencyPrice . '</div>';
+                            echo '
+                                            </div>
+                                        </div>
+                                        <div class="button-add-to-cart" title="Thêm vào giỏ hàng">
+                                            <div>
+                                            <i class="fa-solid fa-circle-info"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ';
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+             <!-- Món ăn yêu thích theo lượt xem -->
+             <div class="group-product-content">
+                <div class="title">❤️️ Món ăn yêu thích ❤️️</div>
+                <div class="content-product-container">
+                    <div class="promotion-box">
+                        <?php
+                        foreach ($san_pham_yeu_thich as $product) {
+                            extract($product);
+                            $linkProduct = "index.php?act=product-detail&id=" . $id_san_pham;
+                            $showImage = !empty($hinh_anh) ? $imagePath . $hinh_anh : './uploads/noavatar.jpg';
+                            $formatCurrencyPrice = formatCurrency($price);
+                            echo '
+                                <div class="product-basic-info">
+                                    <a class="link-absolute" title="' . $ten_san_pham . '" href="' . $linkProduct . '"></a>
+                                    <div class="cover-box">
+                                        <div class="promotion-photo">
+                                            <div class="package-default">
+                                                <img src="' . $showImage . '" alt="' . $ten_san_pham . '" loading="lazy" class="img-fit">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="promotion-name two-lines ">' . $ten_san_pham . '</div>
+                                    <div class="product-weight">' . $ten_danh_muc . '</div>
+                                    <div class="d-flex justify-content-end">
+                                        <div class="price-action">
+                                            <div class="d-flex-align-items-baseline">
+                                            <div class="sale-price ">' . $formatCurrencyPrice . '</div>';
+                            echo '
+                                            </div>
+                                        </div>
+                                        <div class="button-add-to-cart" title="Thêm vào giỏ hàng">
+                                            <div>
+                                            <i class="fa-solid fa-circle-info"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ';
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
             <!-- Sản phẩm mới nhất -->
             <div class="group-product-content">
                 <div class="title">✨ Món ăn mới nhất ✨</div>
@@ -102,49 +187,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Món ăn yêu thích theo lượt xem -->
-            <div class="group-product-content">
-                <div class="title">❤️️ Món ăn yêu thích ❤️️</div>
-                <div class="content-product-container">
-                    <div class="promotion-box">
-                        <?php
-                        foreach ($topViewProductList as $product) {
-                            extract($product);
-                            $linkProduct = "index.php?act=product-detail&id=" . $id_san_pham;
-                            $showImage = !empty($hinh_anh) ? $imagePath . $hinh_anh : './uploads/noavatar.jpg';
-                            $formatCurrencyPrice = formatCurrency($price);
-                            echo '
-                                <div class="product-basic-info">
-                                    <a class="link-absolute" title="' . $ten_san_pham . '" href="' . $linkProduct . '"></a>
-                                    <div class="cover-box">
-                                        <div class="promotion-photo">
-                                            <div class="package-default">
-                                                <img src="' . $showImage . '" alt="' . $ten_san_pham . '" loading="lazy" class="img-fit">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="promotion-name two-lines ">' . $ten_san_pham . '</div>
-                                    <div class="product-weight">' . $ten_danh_muc . '</div>
-                                    <div class="d-flex justify-content-end">
-                                        <div class="price-action">
-                                            <div class="d-flex-align-items-baseline">
-                                            <div class="sale-price ">' . $formatCurrencyPrice . '</div>';
-                            echo '
-                                            </div>
-                                        </div>
-                                        <div class="button-add-to-cart" title="Thêm vào giỏ hàng">
-                                            <div>
-                                            <i class="fa-solid fa-circle-info"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ';
-                        }
-                        ?>
-                    </div>
-                </div>
-            </div>
+           
         </div>
     </div>
 

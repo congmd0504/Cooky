@@ -46,9 +46,14 @@ $tong_gia_tien = tong_tien($id_don_hang);
                 <h4>Chi tiết đơn hàng: <?= $id_don_hang ?></h4>
                 <?php
                 $kiem_tra = false;
+                $kiem_tra2 = false;
                 foreach ($don_hang_all as $don_hang) {
                     if ($don_hang['id_trang_thai_don'] == 1) {
                         $kiem_tra = true;
+                        break;
+                    }
+                    if ($don_hang['id_trang_thai_don'] == 7) {
+                        $kiem_tra2 = true;
                         break;
                     }
                 }
@@ -57,6 +62,10 @@ $tong_gia_tien = tong_tien($id_don_hang);
                     <a onclick="return confirm('Bạn có muốn hủy đơn hàng này không ?')"
                         href="index.php?act=huy-don-hang&id-don-hang=<?= $id_don_hang ?>" class="btn btn-danger">Hủy đơn
                         hàng</a>
+                <?php endif; ?>
+                <?php if ($kiem_tra2): ?>
+                    <a onclick="return confirm('Bạn có muốn hủy đơn hàng này không ?')"
+                        href="index.php?act=thanh-toan&id-don-hang=<?= $id_don_hang ?>" class="btn btn-info">Thanh toán</a>
                 <?php endif; ?>
             </div>
             <?php foreach ($chi_tiet_don_hang as $chi_tiet):

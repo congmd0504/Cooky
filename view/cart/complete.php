@@ -4,10 +4,12 @@ if (isset($_GET['id_don_hang'])) {
 }
 $don_hang = select_don_hang($id_don_hang);
 $chi_tiet_don_hang = select_chi_tiet_don_hang($id_don_hang);
+// print_r($chi_tiet_don_hang);
+
 $tong_gia_tien = tong_tien($id_don_hang);
 extract($don_hang);
 delete_gio_hang_all($_SESSION['login']['id_khach_hang']);
-if(isset($_GET['status']) && $_GET['status'] == 1){
+if (isset($_GET['status']) && $_GET['status'] == 1) {
     doi_trang_thai_onlline($id_don_hang);
 }
 ?>
@@ -58,6 +60,7 @@ if(isset($_GET['status']) && $_GET['status'] == 1){
             $STT = 0;
             foreach ($chi_tiet_don_hang as $chi_tiet) {
                 $STT += 1;
+                update_so_luong($chi_tiet['id_chi_tiet_san_pham']);
                 $tong_tien = $chi_tiet['price'] * $chi_tiet['so_luong'];
                 echo '<tr class="text-center">
                     <td>' . $STT . '</td>
