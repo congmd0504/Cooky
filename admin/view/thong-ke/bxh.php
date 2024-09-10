@@ -1,5 +1,5 @@
 <?php $bxh_mua = luot_mua_sp();
-$bxh_xem = san_pham_top();
+$bxh_xem = san_pham_hot();
 $bieudo = thong_ke_bieu_do() ?>
 <div class="main-content">
     <div class="page-content pt-4">

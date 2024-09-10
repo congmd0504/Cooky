@@ -4,7 +4,7 @@
                 <div class="content-product-container">
                     <div class="promotion-box">
                         <?php
-                        foreach ($topViewProductList as $product) {
+                        foreach ($san_pham_yeu_thich as $product) {
                             $linkProduct = "index.php?act=product-detail&id=" . $product['id_san_pham'];
                             $showImage = !empty($product['hinh_anh']) ? $imagePath . $product['hinh_anh'] : './uploads/noavatar.jpg';
                             $formatCurrencyPrice = formatCurrency($product['price']);

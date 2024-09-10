@@ -83,6 +83,9 @@ $trung_binh_danh_gia = trung_binh_danh_gia($_GET['id']);
                                         <input type="radio" name="id_khau_phan" class="id_khau_phan" value="<?php
                                         $found = false;
                                         foreach ($chi_tiet_san_pham as $san_pham) {
+                                            if($san_pham['display_detail_san_pham'] == 0){
+                                                continue;
+                                            }
                                             if ($san_pham['id_khau_phan'] == $value['id_khau_phan']) {
                                                 echo $san_pham['id_khau_phan'];
                                                 $found = true;
@@ -113,6 +116,9 @@ $trung_binh_danh_gia = trung_binh_danh_gia($_GET['id']);
                                         <input type="radio" name="id_do_an_them" class="id_do_an_them" value="<?php
                                         $found = false;
                                         foreach ($chi_tiet_san_pham as $san_pham) {
+                                            if($san_pham['display_detail_san_pham'] == 0){
+                                                continue;
+                                            }
                                             if ($san_pham['id_do_an_them'] == $value['id_do_an_them']) {
                                                 echo $san_pham['id_do_an_them'];
                                                 $found = true;

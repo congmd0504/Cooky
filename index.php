@@ -17,7 +17,8 @@ include_once("./view/header-site.php");
 $listdanhmuc = loadall_danhmuc_trangchu();
 $listdanhmuc_all = loai_select_all();
 $newProductList = san_pham_select_moi_nhat();
-$topViewProductList = san_pham_top();
+$topViewProductList = san_pham_hot();
+$san_pham_yeu_thich = san_pham_yeu_thich();
 if (isset($_GET['act']) && $_GET['act'] != "") {
     $act = $_GET['act'];
     switch ($act) {
@@ -305,7 +306,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                         include_once('./payment.php');
                         break;
                     }
-                    
                 }
             }
             include_once './view/cart/complete.php';
@@ -395,6 +395,9 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 }
             }
             include_once 'view/auth/reset-password-form.php';
+            break;
+        case 'thanh-toan':
+            include_once('./payment.php');
             break;
     }
 } else {
