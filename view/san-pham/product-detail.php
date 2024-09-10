@@ -142,11 +142,10 @@ $trung_binh_danh_gia = trung_binh_danh_gia($_GET['id']);
                                         });
                                     });
                                 </script> <br>
-                                <div style="width: 173%;" class="text-end">
+                                <div style="width: 123%;" class="text-end">
                                     <input class="text-white border rounded" type="submit" value="Thêm vào giỏ hàng"
                                         name="add-to-cart" class="border rounded"
-                                        style="height:54px ;width: 100%; background-color: #0a8dd8;">
-
+                                        style="height:54px ;width: 60%; background-color: #0a8dd8;">
                                     </input>
                                 </div>
                             </form>
