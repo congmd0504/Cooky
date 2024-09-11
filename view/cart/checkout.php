@@ -75,7 +75,7 @@ $ma_giam_gia = select_giam_gia();
                                 $formatTotalMoney = formatCurrency($totalPrice);
                                 $tong += $totalPrice;
                                 $formatTotalAllCart = formatCurrency($tong);
-                                $tong_tien= 0;
+                                $tong_tien = 0;
 
                                 ?>
                                 <div class="item-cart-product">
@@ -91,8 +91,10 @@ $ma_giam_gia = select_giam_gia();
                                         <span><?= $formatPrice ?></span>
                                     </div>
                                 </div>
-                                <input type="hidden" name="id_chi_tiet_san_pham[]" value="<?= htmlspecialchars($gio_hang['id_chi_tiet_san_pham']) ?>">
-                                <input type="hidden" name="so_luong[]" value="<?= htmlspecialchars($gio_hang['so_luong']) ?>">
+                                <input type="hidden" name="id_chi_tiet_san_pham[]"
+                                    value="<?= htmlspecialchars($gio_hang['id_chi_tiet_san_pham']) ?>">
+                                <input type="hidden" name="so_luong[]"
+                                    value="<?= htmlspecialchars($gio_hang['so_luong']) ?>">
 
                             <?php endforeach; ?>
                             <div class="accordion" id="accordionExample">
@@ -114,14 +116,25 @@ $ma_giam_gia = select_giam_gia();
                                                         <?= $giam_gia['giam_gia'] ?>%
                                                     </div>
                                                     <form method="POST">
-                                                        <?php if ($giam_gia['ngay_het_han'] < date('Y-m-d')): ?>
+                                                        <?php if (isset($giam_gia['ngay_het_han']) && $giam_gia['ngay_het_han'] < date('Y-m-d')): ?>
+                                                            <input type="hidden" name="id_ma_giam_gia1" value="">
                                                             <input type="hidden" name="selected_giam_gia"
                                                                 value="<?= $giam_gia['giam_gia'] ?>">
                                                             <div class="bg-danger border text-center rounded-pill"
                                                                 style="width: 62px; height:22px">
                                                                 <p style="font-size: 12px; color:white;">Hết hạn</p>
                                                             </div>
+                                                        <?php elseif (isset($giam_gia['display_gg']) && $giam_gia['display_gg'] == 0): ?>
+                                                            <input type="hidden" name="id_ma_giam_gia1" value="">
+                                                            <input type="hidden" name="selected_giam_gia"
+                                                                value="<?= $giam_gia['giam_gia'] ?>">
+                                                            <div class="bg-warning border text-center rounded-pill"
+                                                                style="width: 62px; height:22px">
+                                                                <p style="font-size: 12px; color:white;">Đã hết</p>
+                                                            </div>
                                                         <?php else: ?>
+                                                            <input type="hidden" name="id_ma_giam_gia1"
+                                                                value="<?= $giam_gia['id_ma_giam_gia'] ?>">
                                                             <input type="hidden" name="selected_giam_gia"
                                                                 value="<?= $giam_gia['giam_gia'] ?>">
                                                             <input type="submit" style="font-size: 12px;"
@@ -129,6 +142,7 @@ $ma_giam_gia = select_giam_gia();
                                                                 name="submit_giam_gia" value="Sử dụng">
                                                         <?php endif; ?>
                                                     </form>
+
                                                 </li>
                                             <?php endforeach; ?>
                                         </ul>
@@ -138,6 +152,7 @@ $ma_giam_gia = select_giam_gia();
                                     <span>
                                         <?php
                                         if (isset($_POST['submit_giam_gia']) && isset($_POST['selected_giam_gia'])) {
+                                            $id_ma_giam_gia = $_POST['id_ma_giam_gia1'];
                                             $ma_giam_gia = (int) $_POST['selected_giam_gia'] / 100;
 
                                             if (isset($ma_giam_gia)) {
@@ -149,16 +164,19 @@ $ma_giam_gia = select_giam_gia();
                                             ';
                                             }
                                         } else {
+                                            $id_ma_giam_gia = "";
                                             echo $formatTotalAllCart;
                                         }
                                         ?>
                                     </span>
                                 </h4>
-                                <input type="hidden" name="tong_gia_tien" value="<?php if($tong_tien ==0){
+                                <input type="id_ma_giam_gia" name="id_ma_giam_gia" value="<?= $id_ma_giam_gia ?>"
+                                    hidden>
+                                <input type="hidden" name="tong_gia_tien" value="<?php if ($tong_tien == 0) {
                                     echo $tong;
-                                }else {
+                                } else {
                                     echo $tong_tien;
-                                } 
+                                }
                                 ?>">
                                 <input type="submit" value="Tiến hành đặt hàng" class="order-button"
                                     name="agree-to-order" />

@@ -18,7 +18,7 @@ function select_don_hang($id_don_hang)
 }
 function select_don_hang_by_id($id_khach_hang)
 {
-    $sql = "SELECT * FROM don_hang WHERE id_khach_hang = ?";
+    $sql = "SELECT * FROM don_hang WHERE id_khach_hang = ? ORDER BY id_don_hang DESC";
     return pdo_query($sql, $id_khach_hang);
 }
 function update_don_hang($id_don_hang, $id_trang_thai_don, $ngay_update)
