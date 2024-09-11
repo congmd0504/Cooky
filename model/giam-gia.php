@@ -20,4 +20,20 @@ function update_ma_giam_gia($id_ma_giam_gia,$code,$giam_gia,$so_luong,$ngay_het_
     $sql ="UPDATE ma_giam_gia SET code=?, giam_gia=?,so_luong=?,ngay_het_han=? WHERE id_ma_giam_gia =?";
     pdo_execute($sql,$code,$giam_gia,$so_luong,$ngay_het_han,$id_ma_giam_gia);
 }
+function update_so_luong_giam_gia($id_ma_giam_gia)
+{
+    $kiem_tra = kiem_tra_so_luong_giam_gia($id_ma_giam_gia);
+    if ($kiem_tra['so_luong'] == 1) {
+        $sql = "UPDATE ma_giam_gia SET so_luong = 0, display_gg = 0 WHERE id_ma_giam_gia=?";
+        pdo_execute($sql, $id_ma_giam_gia);
+    } else if ($kiem_tra['so_luong'] > 1) {
+        $sql = "UPDATE ma_giam_gia SET so_luong = so_luong - 1 WHERE id_ma_giam_gia=?";
+        pdo_execute($sql, $id_ma_giam_gia);
+    }
+}
+function kiem_tra_so_luong_giam_gia($id_ma_giam_gia)
+{
+    $sql = "SELECT so_luong FROM ma_giam_gia WHERE id_ma_giam_gia = ?";
+    return pdo_query_one($sql, $id_ma_giam_gia);
+}
 ?>

@@ -222,7 +222,8 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $id_san_pham = $_POST['id_san_pham'];
                 $id_khau_phan = $_POST['id_khau_phan'];
                 $id_do_an_them = $_POST['id_do_an_them'];
-                $check_id = check_id_chi_tiet_san_pham($id_khau_phan, $id_do_an_them);
+                $id_san_pham= $_POST['id_san_pham'];
+                $check_id = check_id_chi_tiet_san_pham($id_san_pham,$id_khau_phan, $id_do_an_them);
                 if (empty($check_id)) {
                     $thongbao = "error";
                     header("Location: index.php?act=product-detail&id=$id_san_pham&thongbao=" . urlencode($thongbao));
@@ -288,6 +289,11 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $payment_method = $_POST['payment_method'];
                 $note = $_POST['note'];
                 $id_trang_thai_don = 0;
+                $id_ma_giam_gia = $_POST['id_ma_giam_gia'];
+                //Cập nhập só lượng mã giảm giá
+                if(!empty($id_ma_giam_gia)){
+                    update_so_luong_giam_gia($id_ma_giam_gia);
+                }
                 if (empty($phone)) {
                     displayToastrMessageError("Vui lòng không để trống số điện thoại !");
                 }

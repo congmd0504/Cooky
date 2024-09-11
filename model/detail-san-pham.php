@@ -26,10 +26,10 @@ function update_chi_tiet_san_pham($id_chi_tiet_san_pham, $so_luong, $id_khau_pha
     $sql = "UPDATE chi_tiet_san_pham SET so_luong = ?, id_khau_phan = ?, id_do_an_them = ? WHERE id_chi_tiet_san_pham = ?";
     pdo_execute($sql, $so_luong, $id_khau_phan, $id_do_an_them, $id_chi_tiet_san_pham);
 }
-function check_id_chi_tiet_san_pham($id_khau_phan, $id_do_an_them)
+function check_id_chi_tiet_san_pham($id_san_pham,$id_khau_phan, $id_do_an_them)
 {
-    $sql = "SELECT * FROM chi_tiet_san_pham WHERE id_khau_phan = ? AND id_do_an_them = ?";
-    return pdo_query_one($sql, $id_khau_phan, $id_do_an_them);
+    $sql = "SELECT * FROM chi_tiet_san_pham WHERE id_san_pham= ? AND id_khau_phan = ? AND id_do_an_them = ? ";
+    return pdo_query_one($sql,$id_san_pham, $id_khau_phan, $id_do_an_them);
 }
 function update_so_luong($id_chi_tiet_san_pham)
 {

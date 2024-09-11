@@ -44,10 +44,11 @@ $tong_gia_tien = tong_tien($id_don_hang);
         <div class="col-9">
             <div class="d-flex justify-content-between">
                 <h4>Chi tiết đơn hàng: <?= $id_don_hang ?></h4>
+                
                 <?php
                 $kiem_tra = false;
                 $kiem_tra2 = false;
-                foreach ($don_hang_all as $don_hang) {
+                foreach ($chi_tiet_don_hang as $don_hang) {
                     if ($don_hang['id_trang_thai_don'] == 1) {
                         $kiem_tra = true;
                         break;
