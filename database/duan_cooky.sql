@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 11, 2024 at 01:22 PM
+-- Generation Time: Sep 13, 2024 at 05:40 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -31,10 +31,10 @@ CREATE TABLE `binh_luan` (
   `id_binh_luan` int NOT NULL,
   `id_khach_hang` int NOT NULL,
   `id_san_pham` int NOT NULL,
-  `noi_dung` text NOT NULL,
+  `noi_dung` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `ngay_binh_luan` date NOT NULL,
   `display_binh_luan` int NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `binh_luan`
@@ -57,8 +57,8 @@ CREATE TABLE `chi_tiet_don_hang` (
   `id_don_hang` int NOT NULL,
   `id_chi_tiet_san_pham` int NOT NULL,
   `so_luong` int NOT NULL,
-  `tong_gia_tien` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `tong_gia_tien` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `chi_tiet_don_hang`
@@ -92,7 +92,7 @@ CREATE TABLE `chi_tiet_san_pham` (
   `id_san_pham` int NOT NULL,
   `id_khau_phan` int NOT NULL,
   `id_do_an_them` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `chi_tiet_san_pham`
@@ -129,10 +129,10 @@ CREATE TABLE `danh_gia` (
   `id_khach_hang` int NOT NULL,
   `id_san_pham` int NOT NULL,
   `danh_gia` int NOT NULL,
-  `noi_dung` text,
+  `noi_dung` text COLLATE utf8mb4_unicode_ci,
   `ngay_danh_gia` date NOT NULL,
   `display_danh_gia` int DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `danh_gia`
@@ -152,10 +152,10 @@ INSERT INTO `danh_gia` (`id_danh_gia`, `id_khach_hang`, `id_san_pham`, `danh_gia
 
 CREATE TABLE `danh_muc` (
   `id_danh_muc` int NOT NULL,
-  `ten_danh_muc` varchar(255) NOT NULL,
-  `anh_danh_muc` varchar(255) NOT NULL,
+  `ten_danh_muc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `anh_danh_muc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `display_danh_muc` int NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `danh_muc`
@@ -184,14 +184,14 @@ INSERT INTO `danh_muc` (`id_danh_muc`, `ten_danh_muc`, `anh_danh_muc`, `display_
 CREATE TABLE `don_hang` (
   `id_don_hang` int NOT NULL,
   `id_khach_hang` int DEFAULT NULL,
-  `phone` varchar(255) NOT NULL,
-  `dia_chi_giao` varchar(255) NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dia_chi_giao` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_trang_thai_don` int NOT NULL DEFAULT '1',
   `ngay_tao` date NOT NULL,
   `ngay_update` date DEFAULT NULL,
-  `payment_method` varchar(255) NOT NULL,
-  `note` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `payment_method` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `note` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `don_hang`
@@ -216,8 +216,8 @@ INSERT INTO `don_hang` (`id_don_hang`, `id_khach_hang`, `phone`, `dia_chi_giao`,
 
 CREATE TABLE `do_an_them` (
   `id_do_an_them` int NOT NULL,
-  `do_an_them` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `do_an_them` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `do_an_them`
@@ -240,7 +240,7 @@ CREATE TABLE `gio_hang` (
   `id_khach_hang` int NOT NULL,
   `id_chi_tiet_san_pham` int NOT NULL,
   `so_luong` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `gio_hang`
@@ -257,9 +257,9 @@ INSERT INTO `gio_hang` (`id_gio_hang`, `id_khach_hang`, `id_chi_tiet_san_pham`, 
 
 CREATE TABLE `khau_phan` (
   `id_khau_phan` int NOT NULL,
-  `khau_phan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nguoi_phu_hop` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `khau_phan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nguoi_phu_hop` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `khau_phan`
@@ -279,12 +279,12 @@ INSERT INTO `khau_phan` (`id_khau_phan`, `khau_phan`, `nguoi_phu_hop`) VALUES
 
 CREATE TABLE `ma_giam_gia` (
   `id_ma_giam_gia` int NOT NULL,
-  `code` varchar(255) NOT NULL,
+  `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `giam_gia` int NOT NULL,
   `so_luong` int NOT NULL,
   `ngay_het_han` date NOT NULL,
   `display_gg` int NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `ma_giam_gia`
@@ -305,10 +305,10 @@ INSERT INTO `ma_giam_gia` (`id_ma_giam_gia`, `code`, `giam_gia`, `so_luong`, `ng
 CREATE TABLE `reply_comment` (
   `id_reply_comment` int NOT NULL,
   `id_binh_luan` int NOT NULL,
-  `content` text NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_khach_hang` int NOT NULL,
   `ngay_reply` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `reply_comment`
@@ -325,8 +325,8 @@ INSERT INTO `reply_comment` (`id_reply_comment`, `id_binh_luan`, `content`, `id_
 
 CREATE TABLE `roles` (
   `id_roles` int NOT NULL,
-  `ten_vai_tro` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `ten_vai_tro` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `roles`
@@ -345,22 +345,22 @@ INSERT INTO `roles` (`id_roles`, `ten_vai_tro`) VALUES
 
 CREATE TABLE `san_pham` (
   `id_san_pham` int NOT NULL,
-  `ten_san_pham` varchar(255) NOT NULL,
+  `ten_san_pham` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` float NOT NULL,
-  `mo_ta` text NOT NULL,
-  `hinh_anh` varchar(255) NOT NULL,
+  `mo_ta` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hinh_anh` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `luot_xem` int NOT NULL DEFAULT '0',
   `ngay_nhap` datetime NOT NULL,
   `display_san_pham` int NOT NULL DEFAULT '1',
   `id_danh_muc` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `san_pham`
 --
 
 INSERT INTO `san_pham` (`id_san_pham`, `ten_san_pham`, `price`, `mo_ta`, `hinh_anh`, `luot_xem`, `ngay_nhap`, `display_san_pham`, `id_danh_muc`) VALUES
-(7, 'Gà Nướng Muối Ớt (Gà Nguyên Con)', 219000, 'Gà Nướng Muối Ớt (Gà Nguyên Con) Delichi', '97d8ed97-362c-4f21-a355-b4d47b69a335.jpeg', 29, '2024-09-10 12:55:00', 1, 12),
+(7, 'Gà Nướng Muối Ớt (Gà Nguyên Con)', 219000, 'Gà Nướng Muối Ớt (Gà Nguyên Con) Delichi', '97d8ed97-362c-4f21-a355-b4d47b69a335.jpeg', 31, '2024-09-10 12:55:00', 1, 12),
 (8, '[Heo Iberico] Secreto Thịt Thăn Lưng Giữa', 209000, 'Thịt Thăn Lưng Giữa Cắt Khay - Iberian Secreto 300g', '7ee9eb5a-c43e-40f6-ae29-df3db692053b.jpeg', 2, '2024-09-10 12:55:46', 1, 8),
 (9, '[Combo] Cơm Gà Ta - Tiêu Đen + 1 Coca', 45000, 'Cơm gà ', '84e22131-bda8-46af-bece-164c75d6202b.png', 3, '2024-09-10 12:57:17', 1, 12),
 (10, 'Hành Phi', 15000, 'Hành Phi 50g', '54a4622f-d625-4b85-9f21-ae4f61529321.jpeg', 0, '2024-09-10 12:58:09', 1, 18),
@@ -377,7 +377,7 @@ INSERT INTO `san_pham` (`id_san_pham`, `ten_san_pham`, `price`, `mo_ta`, `hinh_a
 (21, 'Trà Tắc Thảo Mộc', 20000, 'Trà Tắc Thảo Mộc Delichi', '5700c0ac-61ea-4348-a71a-6326e0ed0407.jpeg', 0, '2024-09-10 13:53:42', 1, 17),
 (22, 'Mì Xào Vị Đặc Biệt Indomie', 6500, 'Mì Xào Vị Đặc Biệt Indomie 85g - 1 Gói', '96a5fb3f-7a0e-432c-9ef7-65caf1da5535.jpeg', 0, '2024-09-10 13:54:41', 1, 18),
 (23, 'Lẩu Gà Ta Đông Trùng Hạ Thảo', 308000, ' Nước Lẩu Chicken Resort 2 Lít , Gà Ta Tươi Chicken Resort (Chặt Sẵn) 1Kg ,Ớt Chỉ Thiên Đỏ (Ớt Hiểm Đỏ) 10g , Mì Trứng Cao Cấp Meizan 200g , Nấm Đông Trùng Hạ Thảo, Táo Đỏ Khô, Kỷ Tử 100g 6,Cải Bẹ Xanh VietGAP Rửa Sạch 250g', 'de533ab9-81b0-4c61-91b9-8651c0641e83.jpeg', 0, '2024-09-10 13:56:05', 1, 15),
-(24, 'Gà Ta Tiêu Đen (Nguyên Con)', 338000, 'Gà Sốt Tiêu Đen Nguyên Con - Sốt Tiêu Đen Chicken Resort 40g', 'fcbb642a-70ce-4123-ac1a-8906ff11ec27.jpeg', 0, '2024-09-10 13:56:59', 1, 12);
+(24, 'Gà Ta Tiêu Đen (Nguyên Con)', 338000, 'Gà Sốt Tiêu Đen Nguyên Con - Sốt Tiêu Đen Chicken Resort 40g', 'fcbb642a-70ce-4123-ac1a-8906ff11ec27.jpeg', 1, '2024-09-10 13:56:59', 1, 12);
 
 -- --------------------------------------------------------
 
@@ -387,8 +387,8 @@ INSERT INTO `san_pham` (`id_san_pham`, `ten_san_pham`, `price`, `mo_ta`, `hinh_a
 
 CREATE TABLE `trang_thai_don` (
   `id_trang_thai_don` int NOT NULL,
-  `ten_trang_thai_don` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `ten_trang_thai_don` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `trang_thai_don`
@@ -412,18 +412,18 @@ INSERT INTO `trang_thai_don` (`id_trang_thai_don`, `ten_trang_thai_don`) VALUES
 
 CREATE TABLE `user` (
   `id_khach_hang` int NOT NULL,
-  `ho_ten` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `ten_dang_nhap` varchar(255) NOT NULL,
-  `mat_khau` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `hinh_anh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'no-avatar.jpg',
+  `ho_ten` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ten_dang_nhap` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mat_khau` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `hinh_anh` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'no-avatar.jpg',
   `trang_thai` int DEFAULT '1',
-  `dia_chi` varchar(255) DEFAULT NULL,
+  `dia_chi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `kich_hoat` int DEFAULT '1',
   `display_user` int DEFAULT '1',
   `id_roles` int NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
