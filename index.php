@@ -2,6 +2,7 @@
 include_once('./assets/model.php');
 include_once("./global.php");
 include_once("./view/header-site.php");
+
 $listdanhmuc = loadall_danhmuc_trangchu();
 $listdanhmuc_all = loai_select_all();
 $newProductList = san_pham_select_moi_nhat();
@@ -32,7 +33,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     $checkuser = checkuser($ten_dang_nhap, $mat_khau);
                     if (is_array($checkuser)) {
                         $_SESSION['login'] = $checkuser;
-                        session_set_cookie_params(99999 * 60);
                         extract($_SESSION['login']);
                         if ($kich_hoat == 0) {
                             displayToastrMessageWarning("Đăng nhập thất bại .Tài khoản của bạn đã bị khóa");

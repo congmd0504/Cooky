@@ -2,11 +2,12 @@
 session_start();
 ob_start();
 date_default_timezone_set("Asia/Ho_Chi_Minh");
-$ngay_nhap_str = '19/08/2024 21:03:02';
 include_once("../global.php");
 include_once("./assets/model.php");
 include_once("./view/header.php");
 include_once("./view/sidebar.php");
+
+$ngay_nhap_str = '19/08/2024 21:03:02';
 if (isset($_GET['act']) && $_GET['act']) {
     $act = $_GET['act'];
     switch ($act) {
