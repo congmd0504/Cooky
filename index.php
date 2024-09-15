@@ -1,18 +1,6 @@
 <?php
-include_once("./model/pdo.php");
+include_once('./assets/model.php');
 include_once("./global.php");
-include_once('./model/san-pham.php');
-include_once('./model/loai.php');
-include_once('./model/tai-khoan.php');
-include_once('./model/khau-phan.php');
-include_once('./model/do-an-them.php');
-include_once('./model/detail-san-pham.php');
-include_once('./model/binh-luan.php');
-include_once('./model/gio-hang.php');
-include_once('./model/don-hang.php');
-include_once('./model/giam-gia.php');
-include_once('./model/chi-tiet-don-hang.php');
-include_once('./model/danh-gia.php');
 include_once("./view/header-site.php");
 $listdanhmuc = loadall_danhmuc_trangchu();
 $listdanhmuc_all = loai_select_all();
@@ -40,7 +28,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 // Nếu cả hai trường đều không rỗng, tiến hành kiểm tra người dùng
                 if (!empty($ten_dang_nhap) && !empty($mat_khau) && strlen($mat_khau) >= 6) {
                     // Tiếp tục kiểm tra người dùng
-                    // Đặt mã kiểm tra người dùng ở đây
+                    // kiểm tra người dùng ở đây
                     $checkuser = checkuser($ten_dang_nhap, $mat_khau);
                     if (is_array($checkuser)) {
                         $_SESSION['login'] = $checkuser;

@@ -1,7 +1,13 @@
 <?php 
+// PHPMailer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require_once 'vendors/PHPMailer/src/Exception.php';
+require_once 'vendors/PHPMailer/src/PHPMailer.php';
+require_once 'vendors/PHPMailer/src/SMTP.php';
+
 $imagePath ="./uploads/";
-// $weight =200;
-// $discount = 20000;
 function displayToastrMessageSuccess($message_success)
 {
     echo '<script>';
@@ -24,13 +30,7 @@ function formatCurrency($amount)
 {
     return number_format($amount) . 'đ';
 }
-// PHPMailer
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
-require_once 'vendors/PHPMailer/src/Exception.php';
-require_once 'vendors/PHPMailer/src/PHPMailer.php';
-require_once 'vendors/PHPMailer/src/SMTP.php';
 
 // PHPMailer config
 $SMTP_USERNAME = "dinhdcph14290@fpt.edu.vn";
