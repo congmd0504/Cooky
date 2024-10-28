@@ -65,7 +65,7 @@ $tong_gia_tien = tong_tien($id_don_hang);
                         hàng</a>
                 <?php endif; ?>
                 <?php if ($kiem_tra2): ?>
-                    <a onclick="return confirm('Bạn có muốn hủy đơn hàng này không ?')"
+                    <a onclick="return confirm('Bạn có muốn thanh toán đơn hàng này không ?')"
                         href="index.php?act=thanh-toan&id-don-hang=<?= $id_don_hang ?>" class="btn btn-info">Thanh toán</a>
                 <?php endif; ?>
             </div>
