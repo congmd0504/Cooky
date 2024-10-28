@@ -60,10 +60,7 @@
                                 <td><?= $formatTotalMoney ?></td>
                                 <td><?= $deleteItemCart ?></td>
                             </tr>
-                            
-                        
                         <?php endforeach;?>
-
                     </tbody>
                 </table>
                 <div class="shopping-cart-wrapper">

@@ -11,6 +11,9 @@ $san_pham_yeu_thich = san_pham_yeu_thich();
 if (isset($_GET['act']) && $_GET['act'] != "") {
     $act = $_GET['act'];
     switch ($act) {
+        case 'home':
+            include_once './view/homepage.php';
+             break;
         //Đăng nhập
         case 'login':
             $kiem_tra_tai_khoan = "";
